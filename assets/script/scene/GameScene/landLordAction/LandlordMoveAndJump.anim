@@ -1,0 +1,183 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "getLord",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 2.8,
+  "sample": 15,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "spLordMark": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "c7ce2673-75a6-458c-bdaf-b7576e5f07c7"
+                }
+              },
+              {
+                "frame": 0.06666666666666667,
+                "value": {
+                  "__uuid__": "ac7c475d-40f1-4c40-b312-301ebd5165bb"
+                }
+              },
+              {
+                "frame": 0.13333333333333333,
+                "value": {
+                  "__uuid__": "3d16577d-b403-41d7-bea9-9da0739aa091"
+                }
+              },
+              {
+                "frame": 0.2,
+                "value": {
+                  "__uuid__": "68e4b613-e344-43cf-8a58-8b0166fc5058"
+                }
+              },
+              {
+                "frame": 0.26666666666666666,
+                "value": {
+                  "__uuid__": "d810ed55-e977-4f7b-a4ad-b1f49aba40c9"
+                }
+              },
+              {
+                "frame": 0.6666666666666666,
+                "value": {
+                  "__uuid__": "d810ed55-e977-4f7b-a4ad-b1f49aba40c9"
+                }
+              },
+              {
+                "frame": 0.7333333333333333,
+                "value": {
+                  "__uuid__": "68e4b613-e344-43cf-8a58-8b0166fc5058"
+                }
+              },
+              {
+                "frame": 0.8,
+                "value": {
+                  "__uuid__": "3d16577d-b403-41d7-bea9-9da0739aa091"
+                }
+              },
+              {
+                "frame": 0.8666666666666667,
+                "value": {
+                  "__uuid__": "ac7c475d-40f1-4c40-b312-301ebd5165bb"
+                }
+              },
+              {
+                "frame": 0.9333333333333333,
+                "value": {
+                  "__uuid__": "c7ce2673-75a6-458c-bdaf-b7576e5f07c7"
+                }
+              },
+              {
+                "frame": 1,
+                "value": {
+                  "__uuid__": "c7ce2673-75a6-458c-bdaf-b7576e5f07c7"
+                }
+              },
+              {
+                "frame": 1.4666666666666666,
+                "value": {
+                  "__uuid__": "c7ce2673-75a6-458c-bdaf-b7576e5f07c7"
+                }
+              }
+            ]
+          }
+        },
+        "props": {
+          "scaleY": [
+            {
+              "frame": 0.4666666666666667,
+              "value": 1,
+              "curve": "cubicOut"
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": 1.2
+            },
+            {
+              "frame": 0.8,
+              "value": 0.8
+            },
+            {
+              "frame": 0.9333333333333333,
+              "value": 0.9
+            },
+            {
+              "frame": 1,
+              "value": 1
+            }
+          ],
+          "y": [
+            {
+              "frame": 1.4666666666666666,
+              "value": 0,
+              "curve": "cubicOut"
+            },
+            {
+              "frame": 2,
+              "value": 50,
+              "curve": "cubicIn"
+            },
+            {
+              "frame": 2.2666666666666666,
+              "value": 0
+            },
+            {
+              "frame": 2.4,
+              "value": 20
+            },
+            {
+              "frame": 2.466666666666667,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "spRing": {
+        "props": {
+          "scaleX": [
+            {
+              "frame": 0,
+              "value": 1,
+              "curve": "cubicIn"
+            },
+            {
+              "frame": 0.4666666666666667,
+              "value": 0
+            }
+          ],
+          "scaleY": [
+            {
+              "frame": 0,
+              "value": 1,
+              "curve": "cubicIn"
+            },
+            {
+              "frame": 0.4666666666666667,
+              "value": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 1,
+      "func": "_onNodeBeganMove",
+      "params": [
+        ""
+      ]
+    },
+    {
+      "frame": 2.8,
+      "func": "_onActionEnd",
+      "params": []
+    }
+  ]
+}

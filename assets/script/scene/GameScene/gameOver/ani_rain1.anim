@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "ani_rain1",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.77,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "y": [
+        {
+          "frame": 0,
+          "value": 69
+        },
+        {
+          "frame": 1.3833333333333333,
+          "value": -29
+        },
+        {
+          "frame": 1.7666666666666666,
+          "value": -45
+        }
+      ],
+      "opacity": [
+        {
+          "frame": 0,
+          "value": 255
+        },
+        {
+          "frame": 1.3833333333333333,
+          "value": 20
+        },
+        {
+          "frame": 1.7666666666666666,
+          "value": 0
+        }
+      ]
+    }
+  },
+  "events": []
+}

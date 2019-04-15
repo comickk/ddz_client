@@ -1,0 +1,133 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "lordJump",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.85,
+  "sample": 40,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "scaleY": [
+        {
+          "frame": 0,
+          "value": 1
+        },
+        {
+          "frame": 0.625,
+          "value": 1
+        },
+        {
+          "frame": 0.7,
+          "value": 0.7
+        },
+        {
+          "frame": 0.775,
+          "value": 1
+        },
+        {
+          "frame": 0.775,
+          "value": 1
+        },
+        {
+          "frame": 0.775,
+          "value": 0.7
+        },
+        {
+          "frame": 0.8,
+          "value": 1.1
+        },
+        {
+          "frame": 0.825,
+          "value": 1
+        }
+      ],
+      "y": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 0.45,
+          "value": 50
+        },
+        {
+          "frame": 0.625,
+          "value": 0
+        },
+        {
+          "frame": 0.7,
+          "value": -10
+        },
+        {
+          "frame": 0.775,
+          "value": 20
+        },
+        {
+          "frame": 0.825,
+          "value": 0
+        }
+      ]
+    },
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "8c5e4be7-1090-400f-bba7-76ea2725171c"
+            }
+          },
+          {
+            "frame": 0.625,
+            "value": {
+              "__uuid__": "d810ed55-e977-4f7b-a4ad-b1f49aba40c9"
+            }
+          },
+          {
+            "frame": 0.675,
+            "value": {
+              "__uuid__": "68e4b613-e344-43cf-8a58-8b0166fc5058"
+            }
+          },
+          {
+            "frame": 0.725,
+            "value": {
+              "__uuid__": "3d16577d-b403-41d7-bea9-9da0739aa091"
+            }
+          },
+          {
+            "frame": 0.775,
+            "value": {
+              "__uuid__": "ac7c475d-40f1-4c40-b312-301ebd5165bb"
+            }
+          },
+          {
+            "frame": 0.825,
+            "value": {
+              "__uuid__": "8c5e4be7-1090-400f-bba7-76ea2725171c"
+            }
+          }
+        ],
+        "enabled": [
+          {
+            "frame": 0,
+            "value": true
+          },
+          {
+            "frame": 0.825,
+            "value": true
+          }
+        ]
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 0.825,
+      "func": "lordJumpCallback",
+      "params": []
+    }
+  ]
+}

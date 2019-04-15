@@ -1,0 +1,230 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "LandlordMoveAndJumpNew",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 3.4,
+  "sample": 15,
+  "speed": 1.6,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "spLordMark": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "4aa0797c-500c-4d80-a4f6-c8c1d49ac53c"
+                }
+              },
+              {
+                "frame": 0.13333333333333333,
+                "value": {
+                  "__uuid__": "6c75ff60-b5c8-4e6f-8ba5-f12996f5563c"
+                }
+              },
+              {
+                "frame": 0.26666666666666666,
+                "value": {
+                  "__uuid__": "54dce3dc-5d5c-400c-a375-7be12ec49b14"
+                }
+              },
+              {
+                "frame": 0.4666666666666667,
+                "value": {
+                  "__uuid__": "6338f155-ab4f-43ee-b452-44ce793778a8"
+                }
+              },
+              {
+                "frame": 0.6,
+                "value": {
+                  "__uuid__": "e355c63e-03be-412a-8a96-89b5b929e06f"
+                }
+              },
+              {
+                "frame": 0.8,
+                "value": {
+                  "__uuid__": "6252edd9-e742-41d9-ba9f-8ad0cc4f6f59"
+                }
+              },
+              {
+                "frame": 0.9333333333333333,
+                "value": {
+                  "__uuid__": "a8a2a8aa-c6a7-4772-9558-770feb69ed1c"
+                }
+              },
+              {
+                "frame": 1.1333333333333333,
+                "value": {
+                  "__uuid__": "8f4a138f-96c9-4293-aaf6-05ed713dbe1d"
+                }
+              },
+              {
+                "frame": 1.2666666666666666,
+                "value": {
+                  "__uuid__": "46d1808e-586d-49db-95a2-3bc6d626d35a"
+                }
+              },
+              {
+                "frame": 2.1333333333333333,
+                "value": {
+                  "__uuid__": "46d1808e-586d-49db-95a2-3bc6d626d35a"
+                }
+              }
+            ],
+            "enabled": [
+              {
+                "frame": 0,
+                "value": true
+              },
+              {
+                "frame": 0.13333333333333333,
+                "value": true
+              },
+              {
+                "frame": 1.2666666666666666,
+                "value": true
+              },
+              {
+                "frame": 2.1333333333333333,
+                "value": false
+              }
+            ]
+          }
+        },
+        "props": {
+          "scaleY": [],
+          "y": [
+            {
+              "frame": 0,
+              "value": 8.5
+            },
+            {
+              "frame": 1.2666666666666666,
+              "value": 8.5
+            },
+            {
+              "frame": 2.1333333333333333,
+              "value": 8.5,
+              "curve": "cubicOut"
+            }
+          ],
+          "x": [
+            {
+              "frame": 0,
+              "value": -115.7
+            },
+            {
+              "frame": 1.2666666666666666,
+              "value": -115.7,
+              "curve": [
+                1.19,
+                0,
+                1.02,
+                -0.1
+              ]
+            },
+            {
+              "frame": 2.1333333333333333,
+              "value": -115.7
+            }
+          ]
+        }
+      },
+      "stay": {
+        "comps": {
+          "cc.Sprite": {
+            "enabled": [
+              {
+                "frame": 0,
+                "value": false
+              },
+              {
+                "frame": 2.1333333333333333,
+                "value": true
+              }
+            ],
+            "spriteFrame": [
+              {
+                "frame": 2.1333333333333333,
+                "value": {
+                  "__uuid__": "164123fc-d9a3-4096-899d-544aa38d1408"
+                }
+              },
+              {
+                "frame": 2.2666666666666666,
+                "value": {
+                  "__uuid__": "f695f1c1-71ae-45d3-a29f-fdf0b4a6f340"
+                }
+              },
+              {
+                "frame": 2.4,
+                "value": {
+                  "__uuid__": "e98a2322-f9ca-45d5-8da2-d4422efef97a"
+                }
+              },
+              {
+                "frame": 2.533333333333333,
+                "value": {
+                  "__uuid__": "e9c29586-f602-4443-aa39-7f881430a816"
+                }
+              },
+              {
+                "frame": 2.6666666666666665,
+                "value": {
+                  "__uuid__": "9d458b7f-50b8-43cd-b14a-6b5fcfe850a6"
+                }
+              },
+              {
+                "frame": 2.8,
+                "value": {
+                  "__uuid__": "98498ac9-2807-4942-84fd-f558399775cd"
+                }
+              },
+              {
+                "frame": 2.933333333333333,
+                "value": {
+                  "__uuid__": "325fe0b0-3bec-4810-873a-5271bad6fc25"
+                }
+              },
+              {
+                "frame": 3.066666666666667,
+                "value": {
+                  "__uuid__": "fc8030f6-0505-46c7-8182-c62eb8056f23"
+                }
+              },
+              {
+                "frame": 3.2,
+                "value": {
+                  "__uuid__": "3c5fd41e-0d14-43a0-b4fc-94d14ce24bf3"
+                }
+              },
+              {
+                "frame": 3.3333333333333335,
+                "value": {
+                  "__uuid__": "7ab0b85c-4da5-4c7a-b0c3-1d14d671858a"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 1,
+      "func": "_onNodeBeganMove",
+      "params": [
+        ""
+      ]
+    },
+    {
+      "frame": 3.3333333333333335,
+      "func": "_onActionEnd",
+      "params": []
+    }
+  ]
+}

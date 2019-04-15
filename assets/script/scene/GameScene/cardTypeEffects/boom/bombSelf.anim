@@ -1,0 +1,156 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "bombSelf",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.75,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {}
+    },
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            -600,
+            -200
+          ],
+          "motionPath": [
+            [
+              -321,
+              119,
+              -461,
+              70,
+              -174,
+              171
+            ]
+          ]
+        },
+        {
+          "frame": 1,
+          "value": [
+            0,
+            0
+          ],
+          "motionPath": []
+        }
+      ],
+      "rotation": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 1,
+          "value": 540
+        }
+      ]
+    },
+    "paths": {
+      "wave": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 1,
+              "value": true
+            }
+          ]
+        },
+        "comps": {
+          "cc.ParticleSystem": {}
+        }
+      },
+      "sp": {
+        "comps": {
+          "cc.Sprite": {
+            "enabled": [
+              {
+                "frame": 0,
+                "value": true
+              },
+              {
+                "frame": 1,
+                "value": false
+              }
+            ]
+          }
+        }
+      },
+      "bombFont": {
+        "comps": {
+          "cc.Sprite": {
+            "enabled": [
+              {
+                "frame": 0,
+                "value": false
+              },
+              {
+                "frame": 1,
+                "value": true
+              },
+              {
+                "frame": 1.75,
+                "value": false
+              }
+            ]
+          }
+        },
+        "props": {
+          "scaleX": [
+            {
+              "frame": 1,
+              "value": -1
+            },
+            {
+              "frame": 1.1,
+              "value": -2
+            },
+            {
+              "frame": 1.5,
+              "value": -1
+            }
+          ],
+          "scaleY": [
+            {
+              "frame": 1,
+              "value": -1
+            },
+            {
+              "frame": 1.1,
+              "value": -2
+            },
+            {
+              "frame": 1.5,
+              "value": -1
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 1,
+              "value": 120
+            },
+            {
+              "frame": 1.1,
+              "value": 255
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "frame": 1,
+      "func": "onPlayBoomSound",
+      "params": []
+    }
+  ]
+}

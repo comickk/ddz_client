@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "gameStart2",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 2.5,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "8c7def55-a091-4312-9456-2956d566e869"
+            }
+          }
+        ],
+        "enabled": [
+          {
+            "frame": 0,
+            "value": true
+          },
+          {
+            "frame": 2.5,
+            "value": false
+          }
+        ]
+      }
+    },
+    "props": {
+      "opacity": [
+        {
+          "frame": 0,
+          "value": 80
+        },
+        {
+          "frame": 0.5,
+          "value": 255
+        },
+        {
+          "frame": 2,
+          "value": 255
+        },
+        {
+          "frame": 2.5,
+          "value": 0
+        }
+      ]
+    }
+  },
+  "events": []
+}

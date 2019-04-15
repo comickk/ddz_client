@@ -1,0 +1,30 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "loginLord",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 3,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "y": [
+        {
+          "frame": 0,
+          "value": -245,
+          "curve": "cubicInOut"
+        },
+        {
+          "frame": 2,
+          "value": -262
+        },
+        {
+          "frame": 3,
+          "value": -245
+        }
+      ]
+    }
+  },
+  "events": []
+}

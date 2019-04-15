@@ -1,0 +1,35 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "ani_light",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.6833333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 22,
+  "curveData": {
+    "props": {
+      "width": [
+        {
+          "frame": 0,
+          "value": 567
+        },
+        {
+          "frame": 1.6833333333333333,
+          "value": 480
+        }
+      ],
+      "height": [
+        {
+          "frame": 0,
+          "value": 175
+        },
+        {
+          "frame": 1.6833333333333333,
+          "value": 143
+        }
+      ]
+    }
+  },
+  "events": []
+}

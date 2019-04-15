@@ -1,0 +1,105 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "flayBean",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.85,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 22,
+  "curveData": {
+    "paths": {
+      "wing1": {
+        "props": {
+          "x": [
+            {
+              "frame": 0,
+              "value": -51.7
+            },
+            {
+              "frame": 0.85,
+              "value": -44.4
+            }
+          ],
+          "y": [
+            {
+              "frame": 0,
+              "value": 49.1
+            },
+            {
+              "frame": 0.85,
+              "value": 55.5
+            }
+          ],
+          "rotation": [
+            {
+              "frame": 0,
+              "value": -19
+            },
+            {
+              "frame": 0.85,
+              "value": -11
+            }
+          ]
+        }
+      },
+      "wing2": {
+        "props": {
+          "x": [
+            {
+              "frame": 0,
+              "value": 87.7
+            },
+            {
+              "frame": 0.85,
+              "value": 91.4
+            }
+          ],
+          "y": [
+            {
+              "frame": 0,
+              "value": -23.6
+            },
+            {
+              "frame": 0.85,
+              "value": -14.4
+            }
+          ],
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 80
+            },
+            {
+              "frame": 0.85,
+              "value": 69
+            }
+          ]
+        }
+      }
+    },
+    "props": {
+      "x": [
+        {
+          "frame": 0,
+          "value": 206
+        },
+        {
+          "frame": 0.85,
+          "value": 206
+        }
+      ],
+      "y": [
+        {
+          "frame": 0,
+          "value": 22
+        },
+        {
+          "frame": 0.85,
+          "value": 32
+        }
+      ]
+    }
+  },
+  "events": []
+}

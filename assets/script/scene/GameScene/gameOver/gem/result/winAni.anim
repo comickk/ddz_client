@@ -1,0 +1,47 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "winAni",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.4166666666666667,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 22,
+  "curveData": {
+    "paths": {
+      "winEffect": {
+        "props": {
+          "height": [
+            {
+              "frame": 0,
+              "value": 150
+            },
+            {
+              "frame": 0.2,
+              "value": 152.44444444444446
+            },
+            {
+              "frame": 0.4166666666666667,
+              "value": 172
+            }
+          ],
+          "width": [
+            {
+              "frame": 0,
+              "value": 560
+            },
+            {
+              "frame": 0.2,
+              "value": 563.1111111111111
+            },
+            {
+              "frame": 0.4166666666666667,
+              "value": 588
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

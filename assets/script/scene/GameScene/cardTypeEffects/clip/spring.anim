@@ -1,0 +1,121 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "spring",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 4,
+  "sample": 10,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "sp": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "4fe521ce-73ce-494f-94de-de140911de76"
+                }
+              },
+              {
+                "frame": 0.1,
+                "value": {
+                  "__uuid__": "8ff49b10-4350-45da-a443-fd662c058a90"
+                }
+              },
+              {
+                "frame": 0.2,
+                "value": {
+                  "__uuid__": "bc92a46f-a1e4-450f-ba70-e56cc950087c"
+                }
+              },
+              {
+                "frame": 0.3,
+                "value": {
+                  "__uuid__": "3ea91318-a0db-4eff-91d2-ed40febf5f05"
+                }
+              },
+              {
+                "frame": 0.4,
+                "value": {
+                  "__uuid__": "823332d4-2e23-477e-b8a5-632d68d4e424"
+                }
+              },
+              {
+                "frame": 0.5,
+                "value": {
+                  "__uuid__": "ef1d2e47-fb28-4c21-8b89-ecfcc1173167"
+                }
+              },
+              {
+                "frame": 0.6,
+                "value": {
+                  "__uuid__": "cc48ef6e-edbb-4a12-a5b2-c6f429501f70"
+                }
+              },
+              {
+                "frame": 0.7,
+                "value": {
+                  "__uuid__": "66131e15-01a5-4660-8c59-0fb6daa35f8f"
+                }
+              },
+              {
+                "frame": 0.8,
+                "value": {
+                  "__uuid__": "a341326d-daa9-4902-acda-8531f15be3c5"
+                }
+              },
+              {
+                "frame": 0.9,
+                "value": {
+                  "__uuid__": "bbfdc391-f1bb-4970-bcb5-476bdda18abd"
+                }
+              }
+            ],
+            "enabled": [
+              {
+                "frame": 0.9,
+                "value": true
+              },
+              {
+                "frame": 3,
+                "value": true
+              }
+            ]
+          }
+        }
+      },
+      "flowerRing": {
+        "comps": {
+          "cc.ParticleSystem": {
+            "enabled": [
+              {
+                "frame": 0,
+                "value": true
+              },
+              {
+                "frame": 4,
+                "value": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "props": {
+      "opacity": [
+        {
+          "frame": 3,
+          "value": 255
+        },
+        {
+          "frame": 4,
+          "value": 0
+        }
+      ]
+    }
+  },
+  "events": []
+}

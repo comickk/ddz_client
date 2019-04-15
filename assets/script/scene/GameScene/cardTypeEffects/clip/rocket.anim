@@ -1,0 +1,170 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "rocket",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 2,
+  "sample": 25,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "09b584c0-ef0e-4483-8993-8f7f82ecda3d"
+            }
+          }
+        ],
+        "enabled": [
+          {
+            "frame": 0,
+            "value": true
+          },
+          {
+            "frame": 1,
+            "value": false
+          }
+        ]
+      }
+    },
+    "props": {
+      "y": [
+        {
+          "frame": 0,
+          "value": 0,
+          "curve": [
+            0.54,
+            0.01,
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 0.6,
+          "value": 500,
+          "curve": [
+            0.66,
+            0.05,
+            1,
+            1
+          ]
+        },
+        {
+          "frame": 1,
+          "value": -100
+        }
+      ],
+      "scaleY": [
+        {
+          "frame": 0,
+          "value": 1,
+          "curve": "constant"
+        },
+        {
+          "frame": 0.6,
+          "value": -1
+        }
+      ]
+    },
+    "paths": {
+      "bomb": {
+        "props": {
+          "active": [
+            {
+              "frame": 0,
+              "value": false
+            },
+            {
+              "frame": 1,
+              "value": true
+            }
+          ]
+        }
+      },
+      "fire": {
+        "comps": {
+          "cc.ParticleSystem": {
+            "enabled": [
+              {
+                "frame": 0,
+                "value": true
+              },
+              {
+                "frame": 1,
+                "value": false
+              }
+            ]
+          }
+        }
+      },
+      "font": {
+        "comps": {
+          "cc.Sprite": {
+            "enabled": [
+              {
+                "frame": 0,
+                "value": false
+              },
+              {
+                "frame": 1,
+                "value": true
+              },
+              {
+                "frame": 1.6,
+                "value": true
+              },
+              {
+                "frame": 2,
+                "value": false
+              }
+            ]
+          }
+        },
+        "props": {
+          "opacity": [
+            {
+              "frame": 1,
+              "value": 130
+            },
+            {
+              "frame": 1.08,
+              "value": 255
+            }
+          ],
+          "scaleX": [
+            {
+              "frame": 1,
+              "value": 1
+            },
+            {
+              "frame": 1.08,
+              "value": 2
+            },
+            {
+              "frame": 1.6,
+              "value": 1
+            }
+          ],
+          "scaleY": [
+            {
+              "frame": 1,
+              "value": -1
+            },
+            {
+              "frame": 1.08,
+              "value": -2
+            },
+            {
+              "frame": 1.6,
+              "value": -1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}
