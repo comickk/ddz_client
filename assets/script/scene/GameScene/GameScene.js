@@ -52,7 +52,7 @@ cc.Class({
 
         disRaceScoreLayer: {default: null, displayName: "发放比赛积分Layer", type: cc.Prefab},
         raceNumScoreLayer: {default: null, displayName: "比赛局数显示Layer", type: cc.Prefab},
-        extractPokerLayer: {default: null, displayName: "抽牌界面", type: cc.Prefab},
+        extractPokerLayer: {default: null, displayName: "抽牌界面", type: cc.Prefab},        
     },
     _getMsgList(){
         return [
@@ -86,6 +86,7 @@ cc.Class({
             GameNetMsg.recv.EntrustPlay.msg,// 托管
             GameNetMsg.recv.DisplayPoker.msg,// 明牌
             GameNetMsg.recv.ChangeDesk.msg,// 换桌子
+            GameLocalMsg.Play.onPlayerEscape,//玩家逃跑
 
             GameNetMsg.recv.GameOver_NormalMatch.msg,// 金豆场结算
             GameNetMsg.recv.GameOver_RoundMatch.msg,// 比赛场单场结算
@@ -97,6 +98,7 @@ cc.Class({
             GameLocalMsg.Play.OnGameOverContinuePlay,
             GameLocalMsg.Play.OnTriggerPutCardWarning,
             GameLocalMsg.Play.OnGameOverShowResultWithExtractPoker,// 抽牌结算结束
+            
 
             GameLocalMsg.Play.OnTriggerBomb,
             GameLocalMsg.Play.OnTriggerPlane,
@@ -167,80 +169,127 @@ cc.Class({
         }
     },
     _onMsg(msg, data){
-        if (msg == GameLocalMsg.Play.OnClickRobot) {
-
-        } else if (msg == GameLocalMsg.Com.OnShowTips) {// 弹出提示
+        switch(msg){
+        case GameLocalMsg.Play.OnClickRobot:
+            break;
+        case GameLocalMsg.Com.OnShowTips:// 弹出提示
             Utils.destroyChildren(this.topNode);
             var title = data.title;
             var content = data.content;
             var tmp = cc.instantiate(this.pbTipMsg);
             tmp.getComponent('TipMsg').showMsgWithIKnow(title, content);
             this.topNode.addChild(tmp);
-        } else if (msg == GameLocalMsg.Play.OnClickCancelRobot) {// 点击取消托管
+            break;
+
+        case GameLocalMsg.Play.OnClickCancelRobot:// 点击取消托管
             this._onClickCancelRobot();
-        } else if (msg == GameLocalMsg.Play.OnClickRules) {// 点击规则
+            break;
+
+        case GameLocalMsg.Play.OnClickRules:// 点击规则
             if (this.ruleClickLayer) {
                 var node = cc.instantiate(this.ruleClickLayer);
                 this.uiNode.addChild(node);
             }
-        } else if (msg == GameLocalMsg.Play.OnClickSet) {// 点击设置
+            break;
+
+        case GameLocalMsg.Play.OnClickSet:// 点击设置
             var node = cc.instantiate(this.setLayer);
             this.uiNode.addChild(node);
-        } else if (msg == GameLocalMsg.Play.OnClickShop) {// 点击商城
+            break;
+
+        case GameLocalMsg.Play.OnClickShop:// 点击商城
             var node = cc.instantiate(this.shopLayer);
             this.uiNode.addChild(node);
-        } else if (msg == GameNetMsg.recv.DeskEnterUser.msg) {//玩家有进入
+            break;
+
+        case GameNetMsg.recv.DeskEnterUser.msg://玩家有进入
             //this._initPlayer();
-        } else if (msg == GameLocalMsg.Play.OnLeftUserEnter) {// 左边玩家进入
+            break;
+        case GameLocalMsg.Play.OnLeftUserEnter:// 左边玩家进入
             var leftPlayerData = GameData.roomData.leftPlayData;
             this.leftPlayer.setData(leftPlayerData);
             this.leftPlayer.setReady(true);
-        } else if (msg == GameLocalMsg.Play.OnRightUserEnter) {// 右边玩家进入
+            break;
+
+        case GameLocalMsg.Play.OnRightUserEnter:// 右边玩家进入
             var rightPlayerData = GameData.roomData.rightPlayData;
             this.rightPlayer.setData(rightPlayerData);
             this.rightPlayer.setReady(true);
-        } else if (msg == GameNetMsg.recv.BeganGame.msg) {// 开始游戏
+            break;
+
+        case GameNetMsg.recv.BeganGame.msg:// 开始游戏
             // 速配倒计时
-        } else if (msg == GameNetMsg.recv.ShoutPoker.msg) {// 叫牌
+            break;
+
+        case GameNetMsg.recv.ShoutPoker.msg:// 叫牌
             this._onNetShoutPoker(data);
-        } else if (msg == GameNetMsg.recv.ShoutLandlord.msg) {// 叫地主
+            break;
+
+        case GameNetMsg.recv.ShoutLandlord.msg:// 叫地主
             this._onNetShoutLandlord(data);
-        } else if (msg == GameNetMsg.recv.RobLandlord.msg) {// 抢地主
+            break;
+
+        case GameNetMsg.recv.RobLandlord.msg:// 抢地主
             this._onNetRobLandlord(data);
-        } else if (msg == GameNetMsg.recv.ShoutDouble.msg) {// 加倍
+            break;
+
+        case GameNetMsg.recv.ShoutDouble.msg:// 加倍
             this._onNetShoutDouble(data);
-        } else if (msg == GameNetMsg.recv.EnsureLandlord.msg) {// 确定地主
+            break;
+            
+        case GameNetMsg.recv.EnsureLandlord.msg:// 确定地主
             this._onNetEnsureLandlord(data);
-        } else if (msg == GameNetMsg.recv.PlayerOutPoker.msg) {// 玩家出牌
+            break;
+
+        case GameNetMsg.recv.PlayerOutPoker.msg:// 玩家出牌
             this._onNetUserOutPoker(data);
-        } else if (msg == GameLocalMsg.Play.OnShowIdentity) {// 显示自己的身份
+            break;
+
+        case GameLocalMsg.Play.OnShowIdentity:// 显示自己的身份
             this._onShowIdentity();
-        } else if (msg == GameNetMsg.recv.EntrustPlay.msg) {// 托管
+            break;
+        case GameNetMsg.recv.EntrustPlay.msg:// 托管
             this._onNetEntrust(data);
-        } else if (msg == GameNetMsg.recv.DisplayPoker.msg) {// 明牌
+            break;
+
+        case GameNetMsg.recv.DisplayPoker.msg:// 明牌
             var user = data.user;
             this._onNetShowCard(user);
-        } else if (msg == GameNetMsg.recv.GameOver_RoundMatch.msg) {// U钻场单场结算
+            break;
+
+        case GameNetMsg.recv.GameOver_RoundMatch.msg:// U钻场单场结算
             this._onNetRoundMatchOver(msg, data);
-        } else if (msg == GameNetMsg.recv.GameOver_NormalMatch.msg) {// 金豆场结算
+            break;
+            
+        case GameNetMsg.recv.GameOver_NormalMatch.msg:// 金豆场结算
             this._onNetGoldMatchOver(msg, data);
-        } else if (msg == GameLocalMsg.Play.OnShowRaceResultOverWithLuckyCard) {// 展示抽牌界面,
+            break;
+            
+        case GameLocalMsg.Play.OnShowRaceResultOverWithLuckyCard:// 展示抽牌界面,
             Utils.destroyChildren(this.uiNode);
             var extractPokerLayer = cc.instantiate(this.extractPokerLayer);
             this.uiNode.addChild(extractPokerLayer);
-        } else if (msg == GameNetMsg.recv.GameOver_CompeteMatch.msg) {// U钻场结算(正常)
+            break;
+            
+        case GameNetMsg.recv.GameOver_CompeteMatch.msg:// U钻场结算(正常)
             var isExtractPoker = data.iss == 1 ? true : false;//  1表示是抽牌决出的胜负，0表示打完积分的结果
             if (isExtractPoker == false) {// 没有抽牌的话直接显示结算
                 this._onNetMatchFinalWithNormal(data);
             }
-        } else if (msg == GameLocalMsg.Play.OnGameOverShowResultWithExtractPoker) {// U钻场结算(抽牌)
+            break;
+            
+        case GameLocalMsg.Play.OnGameOverShowResultWithExtractPoker:// U钻场结算(抽牌)
             var isExtractPoker = data.iss == 1 ? true : false;//  1表示是抽牌决出的胜负，0表示打完积分的结果
             if (isExtractPoker == true) {// 抽牌的话直接显示结算
                 this._onNetMatchFinalWithExtractPoker(data);
             }
-        } else if (msg == GameNetMsg.recv.DeskUserLeave.msg) {// 用户离开
+            break;
+            
+        case GameNetMsg.recv.DeskUserLeave.msg:// 用户离开
             this._onNetDeskUserLeave(data);
-        } else if (msg == GameLocalMsg.Play.OnGameOverChangePlayer) {// 游戏结束,玩家换对手
+            break;
+            
+        case GameLocalMsg.Play.OnGameOverChangePlayer:// 游戏结束,玩家换对手
             this.gameSceneAudio.playNormalPlayMusic();
 
             this.leftPlayer.leave();
@@ -250,7 +299,9 @@ cc.Class({
             this.selfPlayer.resetStatus();
             GameData.restSelfPlayData();
             GameData._resetRoom();
-        } else if (msg == GameLocalMsg.Play.OnGameOverContinuePlay) {// 游戏结束继续游戏(明牌开始/重新开始)
+            break;
+            
+        case GameLocalMsg.Play.OnGameOverContinuePlay:// 游戏结束继续游戏(明牌开始/重新开始)
             this.gameSceneAudio.playNormalPlayMusic();
 
             this.selfPlayer.resetStatus();
@@ -259,13 +310,17 @@ cc.Class({
             this.leftPlayer.resetStatus();
             this.rightPlayer.resetStatus();
             GameData.resetRoomData();
-        } else if (msg == GameLocalMsg.Com.UpdateMoney) {// 更新玩家金币
+            break;
+            
+        case GameLocalMsg.Com.UpdateMoney:// 更新玩家金币
             //var leftGold = GameData.roomData.leftPlayData.gold;
             //this.leftPlayer.setGoldNum(leftGold);
             //
             //var rightGold = GameData.roomData.rightPlayData.gold;
             //this.rightPlayer.setGoldNum(rightGold);
-        } else if (msg == GameNetMsg.recv.LeaveHome.msg) {// 离开房间
+            break;
+            
+        case GameNetMsg.recv.LeaveHome.msg:// 离开房间
             this.leftPlayer.leave();
             this.rightPlayer.leave();
             this.selfPlayer.leave();
@@ -273,28 +328,48 @@ cc.Class({
             GameCardMgr.exitRoom();
             GameData.cleanRoomData();
             cc.director.loadScene('Center');
-        } else if (msg == GameLocalMsg.Play.OnTriggerPutCardWarning) {// 游戏进入最后报牌阶段
+            break;
+            
+        case GameLocalMsg.Play.OnTriggerPutCardWarning:// 游戏进入最后报牌阶段
             this._onGamePutCardWaring();
-        } else if (msg == GameLocalMsg.Play.OnTriggerBomb) {// 炸弹
+            break;
+            
+        case GameLocalMsg.Play.OnTriggerBomb:// 炸弹
             //Utils.destroyChildren( this.actionNode);
             this._addBombEffect(data);
-        } else if (msg == GameLocalMsg.Play.OnTriggerPlane) {// 飞机
+            break;
+            
+        case GameLocalMsg.Play.OnTriggerPlane:// 飞机
             //Utils.destroyChildren( this.actionNode);
             this._addPlaneEffect(data);
-        } else if (msg == GameLocalMsg.Play.OnTriggerRocket) {// 火箭
+            break;
+            
+        case GameLocalMsg.Play.OnTriggerRocket:// 火箭
             //Utils.destroyChildren( this.actionNode);
             this._addRocketEffect(data);
-        } else if (msg == GameLocalMsg.Play.OnTriggerSpring) {// 春天
+            break;
+            
+        case GameLocalMsg.Play.OnTriggerSpring:// 春天
             this._addSpringEffect(data);
-        } else if (msg === GameNetMsg.recv.ResumeEnterHome.msg) {// 断线重连
+            break;
+            
+        case GameNetMsg.recv.ResumeEnterHome.msg:// 断线重连
             this._onNetResumeEnterRoom(data);
-        } else if (msg == GameLocalMsg.Play.OnResumePlayerStatusData) {
+            break;
+            
+        case GameLocalMsg.Play.OnResumePlayerStatusData:
             this._onResumePlayerStatusData();
-        } else if (msg == GameLocalMsg.Play.OnResumeShowLandlordAction) {
+            break;
+            
+        case GameLocalMsg.Play.OnResumeShowLandlordAction:
             this._onShowEnsureLandlordAction();
-        } else if (msg == GameLocalMsg.Play.OnResumeWaitLandlordPutCard) {
+            break;
+            
+        case GameLocalMsg.Play.OnResumeWaitLandlordPutCard:
             this._onBeganWithLandlordPutPoker();
-        } else if (msg == GameLocalMsg.Play.OnResumePutPokerStatus) {// 恢复游戏时设置各个玩家出牌的状态
+            break;
+            
+        case GameLocalMsg.Play.OnResumePutPokerStatus:// 恢复游戏时设置各个玩家出牌的状态
             for (var k = 0; k < data.length; k++) {
                 var user = data[k];
                 if (user == 1) {
@@ -305,35 +380,62 @@ cc.Class({
                     ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnClickNotPutCard, null);
                 }
             }
-        } else if (msg == GameNetMsg.recv.UserReady.msg) {// 用户准备
+            break;
+            
+        case GameNetMsg.recv.UserReady.msg:// 用户准备
             this._onNetUserReady(data);
-        } else if (msg == GameLocalMsg.Play.OnGamePlay) {// 游戏开始发牌明牌处理
+            break;
+            
+        case GameLocalMsg.Play.OnGamePlay:// 游戏开始发牌明牌处理
             this._onGetRaceScore();
             this._dealPlayerShowCardData();
-        } else if (msg == GameNetMsg.recv.ReSendPoker.msg) {// 重新发牌
+            break;
+            
+        case GameNetMsg.recv.ReSendPoker.msg:// 重新发牌
             this._dealPlayerShowCardData();
-        } else if (msg == GameNetMsg.recv.Chat.msg) {// 聊天
+            break;
+            
+        case GameNetMsg.recv.Chat.msg:// 聊天
             this._onNetChat(data);
-        } else if (msg == GameNetMsg.recv.OnBankrupt.msg) {// 破产补助提示
+            break;
+            
+        case GameNetMsg.recv.OnBankrupt.msg:// 破产补助提示
             this._onNetBankrupt(data);
-        } else if (msg == GameLocalMsg.Game.OnTriggerReconnect) {// 触发重连
+            break;
+            
+        case GameLocalMsg.Game.OnTriggerReconnect:// 触发重连
             this._onReConnect();
-        } else if (msg == GameLocalMsg.Game.OnForceOutLine) {// 账号异地登录
+            break;
+            
+        case GameLocalMsg.Game.OnForceOutLine:// 账号异地登录
             this._onForceOutLine(data);
-        } else if (msg == GameLocalMsg.Game.OnKeyBack) {// 按下返回键
+            break;
+            
+        case GameLocalMsg.Game.OnKeyBack:// 按下返回键
             this._onKeyBack();
-        } else if (msg == GameLocalMsg.Game.OnReconnectFailed) {// 重连失败
+            break;
+            
+        case GameLocalMsg.Game.OnReconnectFailed:// 重连失败
             this._onReconnectFailed();
-        } else if (msg == GameNetMsg.recv.ChangeDesk.msg) {// 换桌, 清理桌子上的玩家
+            break;
+            
+        case GameNetMsg.recv.ChangeDesk.msg:// 换桌, 清理桌子上的玩家
             this.leftPlayer.leave();
             this.rightPlayer.leave();
-        } else if (msg == GameLocalMsg.SOCKET.SEND) {
+
+            //清理后,重新申请进入队列
+            this._sendBeganGameNetMsg(true);
+            break;
+            
+        case GameLocalMsg.SOCKET.SEND:
             if (data == GameNetMsg.send.LeaveHome.msg) {// 离开房间
                 Utils.destroyChildren(this.netNode);
                 //Utils.addLoadingMaskLayer(this.netNode);
                 Utils.addEnterGameLoading(this.netNode);
             }
-        } else if (msg == GameLocalMsg.Play.OnShowPlayerUserInfo) {// 显示用户信息
+            break;
+            
+        case GameLocalMsg.Play.OnShowPlayerUserInfo:// 显示用户信息
             if (this.userInfoPre) {
                 Utils.destroyChildren(this.uiNode);
                 var layer = cc.instantiate(this.userInfoPre);
@@ -350,12 +452,15 @@ cc.Class({
                     script._initUI(name, winRate, continueWinNum, totalNum, roleId, gold);
                 }
             }
-        } else if (msg == GameLocalMsg.Game.OnInitiativeOutLine) {// 主动退出游戏
+            break;
+            
+        case GameLocalMsg.Game.OnInitiativeOutLine:// 主动退出游戏
             // TODO add loadingMask
             Utils.destroyChildren(this.uiNode);
             Utils.destroyChildren(this.netNode);
             Utils.addLoadingMaskLayer(this.netNode);
             cc.director.loadScene('Login');
+            break;
         }
     },
     _onNetOpen(){
@@ -609,25 +714,44 @@ cc.Class({
         } else if (data.user == 2) {
             this.rightPlayer.leave();
             GameData.cleanRightPlayerData();
+        }        
+
+        if (data.escape){//发送逃跑消息------------------------------------------
+            var str = '玩家 '+ data.escape + ' 已退出,游戏结束!';
+            ObserverMgr.dispatchMsg(GameLocalMsg.Com.OnShowTips, {title:"玩家逃跑",content:str});
+            ObserverMgr.dispatchMsg(GameLocalMsg.Play.onPlayerEscape,null);
+
+            this.gameSceneAudio.playNormalPlayMusic();
+
+            this.leftPlayer.leave();
+            GameData.cleanLeftPlayerData();
+
+            this.rightPlayer.leave();
+            GameData.cleanRightPlayerData();
+
+            this.selfPlayer.resetStatus();
+            GameData.restSelfPlayData();
+
+            GameData._resetRoom();
         }
     },
     // 明牌
     _onNetShowCard(user){
-        if (user == 1) {
+        if (user == GameData.roomData.leftPlayData.deskPos) {
             var isLeftShowCard = GameData.roomData.leftPlayData.isShowCard;
             if (isLeftShowCard) {
                 var leftShowCardArr = GameData.roomData.leftPlayData.showCardArray;
                 var isLeftLandlord = GameData.roomData.leftPlayData.isLandlord;
                 this.leftPlayer.setShowCard(leftShowCardArr, isLeftLandlord);
             }
-        } else if (user == 2) {
+        } else if (user == GameData.roomData.rightPlayData.deskPos) {
             var isRightShowCard = GameData.roomData.rightPlayData.isShowCard;
             if (isRightShowCard) {
                 var rightShowCardArr = GameData.roomData.rightPlayData.showCardArray;
                 var isRightLandlord = GameData.roomData.rightPlayData.isLandlord;
                 this.rightPlayer.setShowCard(rightShowCardArr, isRightLandlord);
             }
-        } else if (user == 3) {
+        } else {
             // 自己明牌,更新最后一张明牌
             GameCardMgr.updateLastOneCardFlag();
         }
@@ -644,13 +768,13 @@ cc.Class({
     },
     // 叫牌
     _onNetShoutPoker(data){
-        if (data == 1) {
+        if (data == GameData.roomData.leftPlayData.deskPos) {
             this.leftPlayer.think(null, GameStaticCfg.time.shoutLandlord);
             this.rightPlayer.thinkOver();
-        } else if (data == 2) {
+        } else if (data == GameData.roomData.rightPlayData.deskPos) {
             this.rightPlayer.think(null, GameStaticCfg.time.shoutLandlord);
             this.leftPlayer.thinkOver();
-        } else if (data == 3) {
+        } else {
             var selfIsRobot = GameData.roomData.selfPlayData.isRobot;
             if (selfIsRobot) {// 托管: 不叫牌
                 NetSocketMgr.send(GameNetMsg.send.ShoutLandlord, 0);
@@ -740,35 +864,38 @@ cc.Class({
     // 玩家出牌
     _onNetUserOutPoker(data){
         //{"user":2,"card":407,"nt":0,"num":0}
+
+        var left = GameData.roomData.leftPlayData.deskPos
+        var right  = GameData.roomData.rightPlayData.deskPos
         var user = data.user;
-        var cardArrStr = data.card.toString();
+        var cardArrStr = data.cards.toString();
         var cardNum = data.num;
-        if (user == 1) {
+        if (user ==  left) {
             var leftIsLandlord = GameData.roomData.leftPlayData.isLandlord;
             this.leftPlayer.setRemainCardNum(cardNum);// 剩余手牌数量
             this.leftPlayer.setPutCardInfo(cardArrStr, leftIsLandlord, user, cardNum); // 出的牌
-        } else if (user == 2) {
+        } else if (user == right) {
             var rightIsLandlord = GameData.roomData.rightPlayData.isLandlord;
             this.rightPlayer.setRemainCardNum(cardNum);
             this.rightPlayer.setPutCardInfo(cardArrStr, rightIsLandlord, user, cardNum);
-        } else if (user == 3) {
+        } else  {
             // 自己出牌也会受到这个消息,暂时不做处理
         }
 
         var nextUser = data.nt;
-        if (nextUser == 1) {
-            if (user != 2)this.rightPlayer.thinkOver();
+        if (nextUser == left) {
+            if (user != right)this.rightPlayer.thinkOver();
             this.leftPlayer.think(null, GameStaticCfg.time.putCard);
-        } else if (nextUser == 2) {
-            if (user != 1)this.leftPlayer.thinkOver();
+        } else if (nextUser == right) {
+            if (user != left)this.leftPlayer.thinkOver();
             this.rightPlayer.think(null, GameStaticCfg.time.putCard);
         } else if (nextUser == 0) {// 出牌结束
             this.rightPlayer.thinkOver();
             this.leftPlayer.thinkOver();
             ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnGameOver, null);
-        } else if (nextUser == 3) {
-            if (user != 1) this.leftPlayer.thinkOver();
-            if (user != 2) this.rightPlayer.thinkOver();
+        } else {
+            if (user != left) this.leftPlayer.thinkOver();
+            if (user != right) this.rightPlayer.thinkOver();
             this.selfPlayer.think();
 
             this._onNetTurnSelfPutPoker();
@@ -891,16 +1018,15 @@ cc.Class({
     _onNetShoutDouble(data){
         // 更新加倍情况
         var user = data.user;
-        var type = data.type;
-        if (user == 1) {
+        var type = data.type;//1 不加倍 2 加倍 4 超级加倍
+        if (user ==  GameData.roomData.leftPlayData.deskPos) {
             this.leftPlayer.setDouble(type);
-        } else if (user == 2) {
+        } else if (user == GameData.roomData.rightPlayData.deskPos) {
             this.rightPlayer.setDouble(type);
-        } else if (user == 3) {
-
         } else {
 
         }
+
         var nextDo = data.ntdo;
         if (!nextDo ||                 // 没有这个参数
             (nextDo && nextDo == 0)) { // 或者这个参数为0
@@ -966,15 +1092,15 @@ cc.Class({
         // 处理上个人的情况
         var user = data.user;// 叫地主的用户 (1 左侧 2 右侧 3 自己)
         var userCall = data.call;// 叫地主用户的情况(1 表示叫   0 表示不叫)
-        if (user == 1) {// 左边的用户
+        if (user == GameData.roomData.leftPlayData.deskPos) {// 左边的用户
             this.leftPlayer.setShoutLandlord(userCall == 1);
             this.rightPlayer.thinkOver();
             this.selfPlayer.thinkOver();
-        } else if (user == 2) {// 右边的用户
+        } else if (user == GameData.roomData.rightPlayData.deskPos) {// 右边的用户
             this.rightPlayer.setShoutLandlord(userCall == 1);
             this.leftPlayer.thinkOver();
             this.selfPlayer.thinkOver();
-        } else if (user == 3) {//自己
+        } else{//自己
         }
 
         var nextUser = data.nt;// 下一个用户  1 左侧  2 右侧  3 自己
@@ -986,11 +1112,11 @@ cc.Class({
             time = GameStaticCfg.time.robLandlord;
         }
 
-        if (nextUser == 1) {
+        if (nextUser == GameData.roomData.leftPlayData.deskPos) {
             this.leftPlayer.think(null, time);
-        } else if (nextUser == 2) {
+        } else if (nextUser == GameData.roomData.rightPlayData.deskPos) {
             this.rightPlayer.think(null, time);
-        } else if (nextUser == 3) {
+        } else {
             this.selfPlayer.think();
 
             var selfIsRobot = GameData.roomData.selfPlayData.isRobot;
@@ -1047,24 +1173,26 @@ cc.Class({
     _onNetRobLandlord(data){
         var robUser = data.user;// 做抢地主操作的用户
         var isRob = data.grab;// 该用户是否抢地主
-        if (robUser == 1) {
+        if (robUser == GameData.roomData.leftPlayData.deskPos) {
             this.leftPlayer.setRobLandlord(isRob == 1);
             this.rightPlayer.thinkOver();
             this.selfPlayer.thinkOver();
-        } else if (robUser == 2) {
+        } else if (robUser == GameData.roomData.rightPlayData.deskPos) {
             this.rightPlayer.setRobLandlord(isRob == 1);
             this.leftPlayer.thinkOver();
             this.selfPlayer.thinkOver();
-        } else if (robUser == 3) {// 一般不会走到这个地方
+        } else {// 一般不会走到这个地方
 
         }
 
         var nextUser = data.nt;// 下一个操作的用户
-        if (nextUser == 1) {
+        if (nextUser == GameData.roomData.leftPlayData.deskPos) {
             this.leftPlayer.think(null, GameStaticCfg.time.robLandlord);
-        } else if (nextUser == 2) {
+        } else if (nextUser == GameData.roomData.rightPlayData.deskPos) {
             this.rightPlayer.think(null, GameStaticCfg.time.robLandlord);
-        } else if (nextUser == 3) {
+        } else if (nextUser == 0) {
+            console.log("叫地主结束");
+        }else {
             this.selfPlayer.think();
 
             var selfIsRobot = GameData.roomData.selfPlayData.isRobot;
@@ -1088,10 +1216,7 @@ cc.Class({
                 };
                 ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnShowTipBtn, syncData);
             }
-        } else if (nextUser == 0) {
-            console.log("叫地主结束");
-        }
-
+        } 
     },
 
     _onClickCancelRobot(){
@@ -1110,7 +1235,7 @@ cc.Class({
         if (isDisconnect) {
             this._resumeEnterHome();
         } else {
-            this._sendBeganGameNetMsg(true);
+            //this._sendBeganGameNetMsg(true);
         }
         this._initBg();
     },
@@ -1149,21 +1274,12 @@ cc.Class({
             NetSocketMgr.send(GameNetMsg.send.BeganGame, data);
         }
     },
-
-
+    
     // 初始化玩家
     _initPlayer(){
         var leftPlayerData = null;
         this.leftPlayer.setData();
         var rightPlayerData = null;
         this.rightPlayer.setData();
-    },
-
-    onTest1(){
-        TestCase.onTest14();
-    },
-    onTest2(){
-        //TestCase.onTest6();
-        TestCase.onTestEnter();
-    },
+    },   
 });

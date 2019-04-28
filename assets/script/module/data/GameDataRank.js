@@ -1,6 +1,5 @@
 // 缓存排行数据
 var NetSocketMgr = require('NetSocketMgr');
-var NetHttpMgr = require('NetHttpMgr');
 module.exports = {
     rankData: {
         time: 0,// 获取时间

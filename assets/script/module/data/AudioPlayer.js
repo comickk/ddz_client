@@ -13,7 +13,7 @@ module.exports = {
             cc.audioEngine.stopMusic(this._bgMusicID);
             this._bgMusicID = null;
         }
-
+        
         var soundID = cc.audioEngine.playMusic(clip, isLoop);
         this._bgMusicID = soundID;
         return soundID;

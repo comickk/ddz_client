@@ -28,6 +28,8 @@ cc.Class({
             GameNetMsg.recv.ResumeEnterHome.msg,
             GameLocalMsg.Game.OnWinHide,
             GameLocalMsg.SOCKET.Change,
+
+            GameLocalMsg.Play.onPlayerEscape,
         ];
     },
     _onMsg(msg, data){
@@ -60,6 +62,8 @@ cc.Class({
                     GameData.isRobotByHide = false;
                 }
             }
+        } else if (msg == GameLocalMsg.Play.onPlayerEscape) { //玩家逃跑
+            this.robotBtn.active = false;
         } else if (msg == GameLocalMsg.SOCKET.Change) {
             if (data) {
                 this._initSignal();

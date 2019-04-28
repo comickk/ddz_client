@@ -13,7 +13,7 @@ cc.Class({
         this.landlordIcon.active = false;
     },
     setData(isLandlord, name, underPoint, mul, gold){
-        this.node.setLocalZOrder(999999999999999 - gold);
+        this.node.zIndex = 999999999999999 - gold;
         this.landlordIcon.active = isLandlord;
         this.nameLabel.string = name;
         this.scoreLabel.string = underPoint;

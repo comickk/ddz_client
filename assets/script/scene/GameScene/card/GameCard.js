@@ -151,7 +151,7 @@ cc.Class({
         this._changeColor(this.unSelectColor);
         if (this._isSelected == false) {
             this._isSelected = true;
-            this.node.setPositionY(this.node.getPositionY() + 20);
+            this.node.y += 20;
         }
     },
     // 滑动选中
@@ -176,14 +176,14 @@ cc.Class({
         this._changeColor(this.unSelectColor);
         if (this._isSelected == true) {
             this._isSelected = false;
-            this.node.setPositionY(this.node.getPositionY() - 20);
+            this.node.y -= 20;
         }
     },
     // 牌被打出去
     putOut(){
         this.node.stopAllActions();
-        var x = this.node.getPositionX();
-        var y = this.node.getPositionY();
+        var x = this.node.x;
+        var y = this.node.y;
         var moveTo = new cc.MoveTo(0.2, x, y + 10);
         var fadeOut = new cc.FadeOut(0.2);
         var callBack = new cc.CallFunc(function () {

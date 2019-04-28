@@ -103,7 +103,7 @@ var centerScene = cc.Class({
 		case GameLocalMsg.Classic.Enter:
 			// 进入金币场
 			GameDataUtils.setEnterRoomData(Poker.GameRoomType.Gold, data.id);
-			//NetSocketMgr.send(GameNetMsg.send.EnterHome, { room: data.id });
+			NetSocketMgr.send(GameNetMsg.send.EnterHome, { room: data.id });
 			Utils.addEnterGameLoading(this.netNode);
 			break;
 		
@@ -378,9 +378,9 @@ var centerScene = cc.Class({
 			if (cc.sys.isBrowser) {
 				//console.log('sdk exit');
 				//SDK.exit();
-				//NetSocketMgr.disConnect();
+				NetSocketMgr.disConnect();
 			} else if (cc.sys.isNative) {
-				//NetSocketMgr.disConnect();
+				NetSocketMgr.disConnect();
 			}
 		} else {
 			this.changeMode(Poker.GameMode.Home);

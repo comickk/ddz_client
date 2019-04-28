@@ -50,23 +50,44 @@ cc.Class({
     _initItem(data){
         var underPoint = GameData.roomData.roomInfo.underPoint;
 
+        var selfConsumeGold = data.reward.u3;
+        var leftConsumeGold = data.reward.u1;
+        var rightConsumeGold = data.reward.u2;
+
+        switch(GameData.roomData.leftPlayData.deskPos){
+            case 1:
+                leftConsumeGold = data.reward.u1;   
+                selfConsumeGold = data.reward.u2;            
+                rightConsumeGold = data.reward.u3;   
+                break;
+            case 2: 
+                leftConsumeGold = data.reward.u2;   
+                selfConsumeGold = data.reward.u3;            
+                rightConsumeGold = data.reward.u1;   
+                break;
+            case 3:
+                leftConsumeGold = data.reward.u3;   
+                selfConsumeGold = data.reward.u1;            
+                rightConsumeGold = data.reward.u2;   
+                break;
+        }
         // item数据
         var selfMul = GameDataUtils.getSelfMul();
         var selfName = GameData.playData.name;
         var selfIsLandLord = GameData.roomData.selfPlayData.isLandlord;
-        var selfConsumeGold = data.reward.u3;
+       // var selfConsumeGold = data.reward.u3;
         this.selfResultScript.setData(selfIsLandLord, selfName, underPoint, selfMul, selfConsumeGold);
 
         var leftMul = GameDataUtils.getLeftMul();
         var leftName = GameData.roomData.leftPlayData.name;
         var leftIsLandlord = GameData.roomData.leftPlayData.isLandlord;
-        var leftConsumeGold = data.reward.u1;
+        //var leftConsumeGold = data.reward.u1;
         this.leftResultScript.setData(leftIsLandlord, leftName, underPoint, leftMul, leftConsumeGold);
 
         var rightMul = GameDataUtils.getRightMul();
         var rightName = GameData.roomData.rightPlayData.name;
         var rightIsLandlord = GameData.roomData.rightPlayData.isLandlord;
-        var rightConsumeGold = data.reward.u2;
+        //var rightConsumeGold = data.reward.u2;
         this.rightResultScript.setData(rightIsLandlord, rightName, underPoint, rightMul, rightConsumeGold);
 
     },

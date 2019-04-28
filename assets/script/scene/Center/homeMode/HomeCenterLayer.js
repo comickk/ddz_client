@@ -79,7 +79,7 @@ cc.Class({
     _updateEnterRoomTips(){
         // TODO 判断并显示可以快速进入的场次(Room.id 方式不妥)
         // 当身上的钱不能进入所有场次的时候,这里的快速进入现实的有问题,其实哪个也进不去,但是提示新手场是没问题的,引导充值
-        var enterRoom = GameDataUtils.getCanEnterMaxGoldRoom();
+        var enterRoom = GameDataUtils.getCanEnterMaxGoldRoom();        
         if (enterRoom) {
             var roomName = GameDataUtils.getGoldRoomName(enterRoom.id);
             this.enterRoomLabel.string = roomName;

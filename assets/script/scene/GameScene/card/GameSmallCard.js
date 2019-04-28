@@ -32,7 +32,7 @@ cc.Class({
             console.log("出错的卡牌ID: " + serverID);
         }
         // 设置localIndex,方便自动排序, 明牌的时候是从大到小排序
-        this.node.setLocalZOrder(100 - data.localID);
+        this.node.zIndex =100 - data.localID;
 
         // 设置view
         if (data.suit == GamePokerType.PokerSuit.SmallJoker) {// 小王

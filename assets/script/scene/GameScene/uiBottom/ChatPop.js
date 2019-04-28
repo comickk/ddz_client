@@ -25,6 +25,7 @@ cc.Class({
         var word = JsonFileMgr.getChatDesc(chatId, sex);
         if (word) {
             this.chatWord.string = word.toString();
+            this.chatWord._updateRenderData(true)
             var w = this.chatWord.node.width;
             this.chatBg.width = w + 80;
 

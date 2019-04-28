@@ -21,7 +21,7 @@ cc.Class({
         this.nameLabel.string = data.name;
         this.curScoreLabel.string = data.curScore;
         this.totalScoreLabel.string = data.totalScore;
-        this.node.setLocalZOrder(999999999999999 - data.totalScore);
+        this.node.zIndex = 999999999999999 - data.totalScore;
     },
     setRewardNum(num){
         this.rewardNode.active = true;

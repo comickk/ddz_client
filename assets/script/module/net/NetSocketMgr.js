@@ -207,7 +207,7 @@ module.exports = {
 		var msg = GameNetMsg.getReceiveMsgStrByID(order);
 		var code = recvData['code'];
 		var data = recvData['data'];
-		this._showRectData(order, code, data);
+		//this._showRectData(order, code, data);
 		ObserverMgr.dispatchMsg(GameLocalMsg.SOCKET.RECV, null);
 		if (code == 0) {			
 			ObserverMgr.dispatchMsg(msg, data);
@@ -222,7 +222,7 @@ module.exports = {
 		var msg = GameNetMsg.getReceiveMsgStrByID(id);
 		var recv = { id: id, msg: msg, code: code, data: data };
 		var str = JSON.stringify(recv);
-		console.log('[Socket 接收数据<==]' + str);
+		//console.log('[Socket 接收数据<==]' + str);
 	},
 
 	testsend(){

@@ -196,8 +196,8 @@ module.exports = {
         // 0,1,2,3,4,5,6,7,8,9
         var len = this.slideSelectPokerArray.length;
         if (len > 0) {
-            var curZ = card.getLocalZOrder();
-            var beganZ = this.slideSelectPokerArray[0].getLocalZOrder();
+            var curZ = card.zIndex;
+            var beganZ = this.slideSelectPokerArray[0].zIndex;
             this._resetSliderArr();
             if (curZ > beganZ) {//向右滑动
                 this._pushCardByZOrder1(beganZ, curZ);
@@ -253,7 +253,7 @@ module.exports = {
     _getCardByZOrder(ZOrder){
         for (var k = 0; k < this.handPokerArray.length; k++) {
             var card = this.handPokerArray[k];
-            var z = card.getLocalZOrder();
+            var z = card.zIndex;
             if (z == ZOrder) {
                 return card;
             }

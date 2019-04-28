@@ -68,7 +68,7 @@ module.exports = {
             if (script) {
                 script.setCardIsLandlord(false);
             }
-            child.setLocalZOrder(i);
+            child.zIndex =i;
         }
     },
     addLoadingMaskLayer(node){

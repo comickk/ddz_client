@@ -61,7 +61,7 @@ cc.Class({
         }
     },
     // 更新倍数
-    _updateMul(){
+    _updateMul(){        
         var gamePlayState = GameData.roomData.playState;
         if (gamePlayState == Poker.GamePlayState.None ||
             gamePlayState == Poker.GamePlayState.WaitPlayerJoin) {

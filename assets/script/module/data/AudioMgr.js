@@ -40,8 +40,10 @@ module.exports = {
                 }
             }
             if (item.sex == sex && bType && item.point == point) {
-                            
-                return itemUrl;               
+                // var itemUrl = item.mp3;
+                // var url = cc.url.raw("resources/" + itemUrl + ".mp3");
+                // return url;
+                return item.mp3;               
             }
         }
         return null;

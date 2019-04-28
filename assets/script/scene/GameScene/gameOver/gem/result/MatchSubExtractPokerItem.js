@@ -25,14 +25,14 @@ cc.Class({
             var cardData = CardMap.getDataByServerID(data.card);
             if (cardData) {
                 this.cardPointLabel.string = CardMap.getPointString(cardData.point);
-                this.node.setLocalZOrder(999999999 - cardData.localID);
+                this.node.zIndex =999999999 - cardData.localID;
             } else {
                 this.cardPointLabel.string = "";
-                this.node.setLocalZOrder(999999999);
+                this.node.zIndex=999999999;
             }
         } else {
             this.cardPointLabel.string = "";
-            this.node.setLocalZOrder(999999999);
+            this.node.zIndex=999999999;
         }
     },
     setRewardNum(num){

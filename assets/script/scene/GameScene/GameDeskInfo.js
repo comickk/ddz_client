@@ -13,7 +13,11 @@ cc.Class({
     properties: {
         tipMsgLabel: {default: null, displayName: "提示信息节点", type: cc.Label},
         roomInfo: {default: null, displayName: "房间信息", type: cc.Label},
+
         changePlayer: {default: null, displayName: "换对手按钮", type: cc.Node},
+        startgame: {default: null, displayName: "开始按钮", type: cc.Node},//开始按钮组 ,  明牌开始  和  正常开始
+       
+
         lastThreeCardNode: {default: null, displayName: "底牌节点", type: cc.Node},
         cardBgNode: {default: null, displayName: "底牌背景节点", type: cc.Node},
 
@@ -38,6 +42,8 @@ cc.Class({
             GameLocalMsg.Play.OnGamePlay,
             GameLocalMsg.Play.OnResumeShowLastThreeCard,
             GameNetMsg.recv.LeaveHome.msg,
+            GameLocalMsg.Play.onPlayerEscape,
+
             GameNetMsg.recv.ResumeEnterHome.msg,
             GameLocalMsg.Play.OnTriggerMul_BackCard,
             GameLocalMsg.Play.OnTriggerMul,
@@ -49,7 +55,8 @@ cc.Class({
             Utils.destroyChildren(this.lastThreeCardNode);
             this._hideCardMul();
             this.tipMsgLabel.string = "";
-            this.changePlayer.active = true;
+            //this.changePlayer.active = true;
+            this.startgame.active = true;
         }
     },
     _onMsg(msg, data){
@@ -58,7 +65,8 @@ cc.Class({
             Utils.destroyChildren(this.lastThreeCardNode);
 
             this._time = GameStaticCfg.time.findPlayer;
-            this.changePlayer.active = false;
+            //this.changePlayer.active = false;
+            this.startgame.active = false;
             this.tipMsgLabel.string = "正在速配玩伴..." + this._time;
             this.unschedule(this._onFindPlayerTimer);
             this.schedule(this._onFindPlayerTimer, 1, this._time);
@@ -69,7 +77,8 @@ cc.Class({
             this.readyFlag.active = false;
             // 游戏正式开始,清除这里的所有操作
             this._hideCardMul();
-            this.changePlayer.active = false;
+            //this.changePlayer.active = false;
+            this.startgame.active = false;
             this.tipMsgLabel.string = "";
             this.unschedule(this._onFindPlayerTimer);
             Utils.destroyChildren(this.lastThreeCardNode);
@@ -89,7 +98,8 @@ cc.Class({
             this._addLastThreeCard();
         } else if (msg == GameNetMsg.recv.LeaveHome.msg) {// 离开房间
             Utils.destroyChildren(this.lastThreeCardNode);
-            this.changePlayer.active = false;
+            //this.changePlayer.active = false;
+            this.startgame.active = false;
             this.tipMsgLabel.string = "";
             this.readyFlag.active = false;
             this.unschedule(this._onFindPlayerTimer);
@@ -102,7 +112,14 @@ cc.Class({
             } else {
                 this._onWaitPlayerDouble(false);
             }
-        } else if (msg == GameLocalMsg.Play.OnTriggerMul_BackCard) {// 底牌加倍
+        } else if   ( msg == GameLocalMsg.Play.onPlayerEscape){ //玩家逃跑时
+            //this.changePlayer.active = true;
+
+            Utils.destroyChildren(this.lastThreeCardNode);
+            this.startgame.active = true;
+            this.tipMsgLabel.string = "";
+
+        }   else if (msg == GameLocalMsg.Play.OnTriggerMul_BackCard) {// 底牌加倍
             this._hideCardMul();
             this.readyFlag.active = false;
             //this.cardBgNode.active = true;
@@ -137,6 +154,7 @@ cc.Class({
         this._initMsg();
         this.tipMsgLabel.string = "";
         this.changePlayer.active = false;
+        //this.startgame.active = false;
 
         this._updateDeskInfo();
         this._hideCardMul();
@@ -207,10 +225,14 @@ cc.Class({
     _findPlayerOver(){
         this.unschedule(this._onFindPlayerTimer);
         this.tipMsgLabel.string = "";
-        this.changePlayer.active = true;
+        //this.changePlayer.active = true;
+        this.startgame.active = true;
+        //通知服务器 移出匹配队列,等待玩家  换桌 操作再重新进入匹配队列        
+        NetSocketMgr.send(GameNetMsg.send.FindPlayerOver, '');
     },
     onClickChangePlayer(){
-        var roomID = GameData.roomData.roomID;
+       
+        var roomID = GameData.roomData.roomID;        
         var data = {room: roomID};
         NetSocketMgr.send(GameNetMsg.send.ChangeDesk, data);
     },
@@ -221,5 +243,17 @@ cc.Class({
         } else {
             this.tipMsgLabel.string = "";
         }
-    }
+    },
+
+    // 开始  明牌开始
+    onClickStartGame(event, customEventData){        
+        var roomID = GameData.roomData.roomID;
+        if(customEventData=='1'){
+            NetSocketMgr.send(GameNetMsg.send.BeganGame, {vc: 1, room: roomID});
+           require('GameNextReadyData').isShowCardBegan = true;
+        }else
+            NetSocketMgr.send(GameNetMsg.send.BeganGame, {vc: 0, room: roomID});
+       
+    },
+
 });

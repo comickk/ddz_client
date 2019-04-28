@@ -4,14 +4,14 @@ var Utils = require("Utils");
 module.exports = {
     version: '1.0.0',
 
-    isLocalVersion: false,// 是否是本地版本
-    certUrl: "http://wddz.haoxiaow.com:9700/cert",
-    sdkUrl: "http://wddz.haoxiaow.com:9901/api.php",
-    activityUrl: "http://cdn.haoxiaow.com/ddz/event/activity.json",
-    //isLocalVersion: true,// 是否是本地版本
-    //certUrl: "http://192.168.0.222:9700/cert",
-    //sdkUrl: "http://192.168.0.222:9901/api.php",
-    //activityUrl: "http://192.168.0.222:9901/ddz/event/activity.json",
+    // isLocalVersion: false,// 是否是本地版本
+    // certUrl: "http://wddz.haoxiaow.com:9700/cert",
+    // sdkUrl: "http://wddz.haoxiaow.com:9901/api.php",
+    // activityUrl: "http://cdn.haoxiaow.com/ddz/event/activity.json",
+    isLocalVersion: true,// 是否是本地版本
+    certUrl: "http://192.168.0.222:9700/cert",
+    sdkUrl: "http://192.168.0.222:9901/api.php",
+    activityUrl: "http://192.168.0.222:9901/ddz/event/activity.json",
 
 
     platform: 1, // 1 页游， 2 pc客户端， 3 android， 4 ios
@@ -99,7 +99,7 @@ module.exports = {
         double: 10,// 加倍
         putCard: 25,// 出牌
         noBig: 10,// 要不起
-        findPlayer: 10,// 匹配对手
+        findPlayer: 20,// 匹配对手
         reconnect: 32,// 断线重连
         reconnectNum: 3,// 重连次数
         chat: 4,// 聊天

@@ -13,7 +13,7 @@ cc.Class({
     },
 
     setData(data){
-        this.node.setLocalZOrder(999999999999999 - data.totalScore);
+        this.node.zIndex =999999999999999 - data.totalScore;
         this.landlordNode.active = data.isLandlord;
         this.nameLabel.string = data.name;
         this.curScoreLabel.string = data.curScore;

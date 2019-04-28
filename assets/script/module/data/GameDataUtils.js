@@ -113,6 +113,9 @@ module.exports = {
         }
     },
     _setGameRoomData(roomInfo){
+       
+        //console.log(roomInfo);
+
         GameData.roomData.roomID = roomInfo.id;
         GameData.roomData.roomInfo = roomInfo;
         GameData.roomData.mul.init = roomInfo.initMul;
@@ -193,15 +196,41 @@ module.exports = {
         return comMul;
     },
     getSelfMul(){
-        var lo = GameData.roomData.mul.lo;
-        return this.getComMul() * lo * GameData.roomData.mul.u3;
+        var lo = GameData.roomData.mul.lo;     
+
+        switch (GameData.roomData.leftPlayData.deskPos){
+            case 1:
+                return this.getComMul() * lo * GameData.roomData.mul.u2;
+            case 2:
+                return this.getComMul() * lo * GameData.roomData.mul.u3;
+            case 3:
+                return this.getComMul() * lo * GameData.roomData.mul.u1;
+        }
+        
+        //return this.getComMul() * lo * GameData.roomData.mul.u3;
     },
     getLeftMul(){
         var lo = GameData.roomData.mul.lo;
-        return this.getComMul() * lo * GameData.roomData.mul.u1;
+        //return this.getComMul() * lo * GameData.roomData.mul.u1;
+        switch (GameData.roomData.leftPlayData.deskPos){
+            case 1:
+                return this.getComMul() * lo * GameData.roomData.mul.u1;
+            case 2:
+                return this.getComMul() * lo * GameData.roomData.mul.u2;
+            case 3:
+                return this.getComMul() * lo * GameData.roomData.mul.u3;
+        }
     },
     getRightMul(){
         var lo = GameData.roomData.mul.lo;
-        return this.getComMul() * lo * GameData.roomData.mul.u2;
+        //return this.getComMul() * lo * GameData.roomData.mul.u2;
+        switch (GameData.roomData.rightPlayData.deskPos){
+            case 1:
+                return this.getComMul() * lo * GameData.roomData.mul.u1;
+            case 2:
+                return this.getComMul() * lo * GameData.roomData.mul.u2;
+            case 3:
+                return this.getComMul() * lo * GameData.roomData.mul.u3;
+        }
     },
 };

@@ -24,7 +24,8 @@ cc.Class({
         var dataArr = data.split('|');
         //   名字 |  胜局  | 连胜  |  3   |  4  | 头像
         // 名字
-        var name = decodeURI(dataArr[0])
+       // var name = decodeURI(dataArr[0])
+        var name = dataArr[0]
         if (name.length > 6) {
             name = name.substr(0, 6) + "...";
         }

@@ -129,6 +129,8 @@ window.GameLocalMsg = {
         OnUpdateActivityContent: "GameLocalMsg_Play_OnUpdateActivityContent",// 更新活动的index
         OnTest: "OnTest",//
 
+        onPlayerEscape:"GameLoacalmsg_Player_OnPlayerEscape", //游戏中玩家逃跑
+
         OnSendPokerWithSyncCardNum: "GameLocalMsg_Play_OnSendPokerWithSyncCardNum",// 发牌阶段同步更新其他玩家牌的数量
         OnShowIdentity: "GameLocalMsg_Play_OnShowIdentity",// 显示身份
 

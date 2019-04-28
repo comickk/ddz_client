@@ -230,6 +230,7 @@ cc.Class({
         GameData.roomData.selfPlayData.isShowCard = true;
         NetSocketMgr.send(GameNetMsg.send.DisplayPoker, {"mul": this._showCardMul});
         ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnClickShowCard);
+        
         this._destroySelf();
     },
     // 地主先出牌,明牌按钮

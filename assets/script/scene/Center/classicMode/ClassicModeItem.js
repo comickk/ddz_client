@@ -20,13 +20,22 @@ cc.Class({
     },
     _onMsg(msg, data){
         if (msg == GameNetMsg.recv.UpdateDeskPeople.msg) {
-            for (var k = 0; k < data.length; k++) {
-                var roomID = k;
-                var roomPeople = data[k];
-                if (this._roomData && roomID == this._roomData.id) {
-                    this.peopleNum.string = roomPeople.toString();
-                }
-            }
+           
+            var id = this._roomData.id+''            
+           if(cc.isValid(data[id])){              
+                this.peopleNum.string = ''+ data[id]
+           }else{
+               
+           }
+            // for (var k = 0; k < data.length; k++) {
+            //     var roomID = k;
+            //     var roomPeople = data[k];
+            //         console.log(roomId+'  '+ k +'  ' + data[k])
+            //     if (this._roomData && roomID == this._roomData.id) {
+            //         this.peopleNum.string = roomPeople.toString();
+            //         break;
+            //     }
+            // }
         }
     },
     onLoad: function () {

@@ -197,8 +197,8 @@ cc.Class({
 
         // 按照z进行排序
         this._showCardArray.sort(function (a, b) {
-            var cardA = a.getLocalZOrder();
-            var cardB = b.getLocalZOrder();
+            var cardA = a.zIndex;
+            var cardB = b.zIndex;
             return cardA - cardB;
         });
 
@@ -319,8 +319,8 @@ cc.Class({
     _updatePutCardFootFlag(arr){
         // 按照z进行排序依次
         arr.sort(function (a, b) {
-            var cardA = a.getLocalZOrder();
-            var cardB = b.getLocalZOrder();
+            var cardA = a.zIndex;
+            var cardB = b.zIndex;
             return cardA - cardB;
         });
 
@@ -382,7 +382,7 @@ cc.Class({
                 if (script) {
                     script.setServerCardID(cardID);
                 }
-                smallCard.setLocalZOrder(i);// 重新设置zorder,保证从大到小
+                smallCard.zIndex =i;// 重新设置zorder,保证从大到小
                 putCardArr.push(smallCard);
             }
             if (typeResult && typeResult.type != DECK_TYPE.ERROR) {
@@ -394,7 +394,7 @@ cc.Class({
                         var item = sortArrItem[k1];
                         var findCard = this._findCardNodeByData(putCardArr, item);
                         if (findCard) {
-                            findCard.setLocalZOrder(zOrder);
+                            findCard.zIndex =zOrder;
                             zOrder++;
                             //console.log("重新排序: " + JSON.stringify(item));
                         }

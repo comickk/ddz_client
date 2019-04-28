@@ -59,6 +59,7 @@ cc.Class({
 			GameNetMsg.recv.EnsureLandlord.msg, // 确定地主
 
 			GameNetMsg.recv.LeaveHome.msg,
+			GameLocalMsg.Play.onPlayerEscape,//玩家逃跑
 
 			GameLocalMsg.Play.OnTest,
 			GameLocalMsg.Play.OnTimeOverWithShowCard, //
@@ -114,10 +115,10 @@ cc.Class({
 			// 游戏开始 发牌
 			this._reStart();
 			this._dealSendPoker();
-		} else if (msg == GameLocalMsg.Play.OnTest) {
-			var testData = CardMap.getDataByServerID(data);
-			this._addCard(testData);
-		} else if (msg == GameLocalMsg.Play.OnTimeOverWithShowCard) {
+		// } else if (msg == GameLocalMsg.Play.OnTest) {
+		// 	var testData = CardMap.getDataByServerID(data);
+		// 	this._addCard(testData);
+		 } else if (msg == GameLocalMsg.Play.OnTimeOverWithShowCard) {
 			// 明牌倒计时完毕
 			Utils.destroyChildren(this.tipBtnNode); // 清理提示按钮
 			if (this._isSendCarding == false) {
@@ -178,7 +179,10 @@ cc.Class({
 			if (this._putCardSoundID != null) {
 				cc.audioEngine.stopEffect(this._putCardSoundID);
 			}
-		} else if (msg == GameLocalMsg.Game.OnWinHide) {
+		} else if (msg ==GameLocalMsg.Play.onPlayerEscape){ //玩家逃跑时,结束牌局,重置桌面,可以继续进行 换对手 操作
+			
+			this._reStart();
+		}else if (msg == GameLocalMsg.Game.OnWinHide) {
 			// 如果正在发牌,把发牌剩余的工作全部处理了
 			var playState = GameData.roomData.playState;
 			if (playState == Poker.GamePlayState.SendPoker && this._isSendCarding == true) {
@@ -344,7 +348,7 @@ cc.Class({
 			var cardServerID = itemCardData.serverID;
 			var isLastOne = i == delCardDataArr.length - 1;
 			var node = this._addPutCardToShowNode(cardServerID, isLastOne);
-			node.setLocalZOrder(i); // 重新设置zorder,保证从大到小
+			node.zIndex =i; // 重新设置zorder,保证从大到小
 			arr.push(node);
 		}
 		// 重新计算每张牌的位置
@@ -357,7 +361,7 @@ cc.Class({
 					var item = sortArrItem[k1];
 					var findCard = this._findCardNodeByData(arr, item);
 					if (findCard) {
-						findCard.setLocalZOrder(zOrder);
+						findCard.zIndex=zOrder;
 						zOrder++;
 						//console.log("重新排序: " + JSON.stringify(item));
 					}
@@ -405,7 +409,7 @@ cc.Class({
 			if (serverID != '') {
 				var isLastOne = i == data.length - 1;
 				var node = this._addPutCardToShowNode(serverID, isLastOne);
-				node.setLocalZOrder(i); // 重新设置zorder,保证从大到小
+				node.zIndex = i; // 重新设置zorder,保证从大到小
 				arr.push(node);
 			}
 		}
@@ -415,8 +419,8 @@ cc.Class({
 	_updatePutCardFootFlag(arr) {
 		// 按照z进行排序依次,从小到大排序
 		arr.sort(function(a, b) {
-			var cardA = a.getLocalZOrder();
-			var cardB = b.getLocalZOrder();
+			var cardA = a.zIndex;
+			var cardB = b.zIndex;
 			return cardA - cardB;
 		});
 
@@ -712,10 +716,10 @@ cc.Class({
 					var upNum = 0;
 					// 再弹起来1张
 					var selectCardScript = GameCardMgr.getHandPokerNodeByData(selectCardData[0]);
-					var selectCardZorder = selectCardScript.node.getLocalZOrder();
+					var selectCardZorder = selectCardScript.node.zIndex;
 					cardArr.sort(function(a, b) {
-						var za = a.getLocalZOrder();
-						var zb = b.getLocalZOrder();
+						var za = a.zIndex;
+						var zb = b.zIndex;
 						var diffA = Math.abs(za - selectCardZorder);
 						var diffB = Math.abs(zb - selectCardZorder);
 						return diffA - diffB;
@@ -762,11 +766,11 @@ cc.Class({
 					//}
 					// 再弹起来2张
 					var selectCardScript = GameCardMgr.getHandPokerNodeByData(selectCardData[0]);
-					var selectCardZorder = selectCardScript.node.getLocalZOrder();
+					var selectCardZorder = selectCardScript.node.zIndex;
 					cardArr.sort(function(a, b) {
 						// 有选择的节点向两边排序(比如1,2,3,4,5)以3为基准排序结果(3,2,4,1,5)
-						var za = a.getLocalZOrder();
-						var zb = b.getLocalZOrder();
+						var za = a.zIndex;
+						var zb = b.zIndex;
 						var diffA = Math.abs(za - selectCardZorder);
 						var diffB = Math.abs(zb - selectCardZorder);
 						return diffA - diffB;

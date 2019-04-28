@@ -15,11 +15,13 @@ window.GameNetMsg = {
 
         ResumeEnterHome: {sendId: 1038, msg: "send_ResumeEnterHome"},//  如果在牌桌中掉线重连需要主动请求场景
 
+        FindPlayerOver:{sendId:1027,msg:"send_FindPlayerOver"},//匹配超时
         ChangeDesk: {sendId: 1037, msg: "send_ChangeDesk"},// 换桌
+
         DisplayPoker: {sendId: 1031, msg: "send_DisplayPoker"},// 明牌
         SendPokerOver: {sendId: 1032, msg: "send_SendPokerOver"},// 发完牌之后校验
         ShoutLandlord: {sendId: 1033, msg: "send_ShoutLandlord"},// 叫地主
-        RobLandlord: {sendId: 1034, msg: "send_ShoutLandlord"},// 抢地主
+        RobLandlord: {sendId: 1034, msg: "send_RobLandlord"},// 抢地主
         ShoutDouble: {sendId: 1035, msg: "send_ShoutDouble"},// 加倍
         PutPoker: {sendId: 1036, msg: "send_PutPoker"},// 出牌
         EntrustPlay: {sendId: 1040, msg: "send_EntrustPlay"},// 托管
@@ -64,6 +66,7 @@ window.GameNetMsg = {
         PlayerOutPoker: {recvId: 2040, msg: "recv_PlayerOutPoker"},// 玩家出牌
 
         GameOver_NormalMatch: {recvId: 2041, msg: "recv_GameOver_NormalMatch"},// 游戏结束，结算
+        
         GameOver_RoundMatch: {recvId: 2065, msg: "recv_GameOver_RoundMatch"},// 比赛场单局结束
         GameOver_CompeteMatch: {recvId: 2048, msg: "recv_GameOver_CompeteMatch"},// 比赛场结算
 
