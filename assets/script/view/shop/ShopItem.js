@@ -13,6 +13,10 @@ cc.Class({
         moneyLabel: {default: null, displayName: "人民币", type: cc.Label},
         _data: null,
         iconList: {default: [], displayName: "图标", type: cc.SpriteFrame},
+        zuanList: {default: [], displayName: "钻石图标", type: cc.SpriteFrame},
+
+        priceicon:cc.Sprite,
+        pricetype: {default: [], displayName: "价格图标", type: cc.SpriteFrame}
     },
 
     onLoad: function () {
@@ -22,16 +26,28 @@ cc.Class({
         this._data = data;
         //商品ID + | + 金币 + | + 对应人民币 + | + 是否热卖 + | + 多送百分比
         // 商品icon
-        var id = data[0];
-        var spriteFrame = this.iconList[5];
-        if (id == 10 || id == 50)spriteFrame = this.iconList[0];
-        if (id == 11 || id == 51)spriteFrame = this.iconList[1];
-        if (id == 12 || id == 52)spriteFrame = this.iconList[2];
-        if (id == 13 || id == 53)spriteFrame = this.iconList[3];
-        if (id == 14 || id == 54)spriteFrame = this.iconList[4];
-        if (id == 15 || id == 55)spriteFrame = this.iconList[5];
-        if (id == 16 || id == 56)spriteFrame = this.iconList[5];
 
+        var id = data[0];
+        var type = id >20?5:1;
+        var spriteFrame = this.iconList[5];
+
+        if(type == 1){
+            this.priceicon.spriteFrame = this.pricetype[1];
+           spriteFrame = this.iconList[id%10];
+        }else{
+            spriteFrame = this.zuanList[id%10];
+            this.priceicon.spriteFrame = this.pricetype[0];
+        }
+        
+        // if (id == 10 || id == 50)spriteFrame = this.iconList[0];
+        // if (id == 11 || id == 51)spriteFrame = this.iconList[1];
+        // if (id == 12 || id == 52)spriteFrame = this.iconList[2];
+        // if (id == 13 || id == 53)spriteFrame = this.iconList[3];
+        // if (id == 14 || id == 54)spriteFrame = this.iconList[4];
+        // if (id == 15 || id == 55)spriteFrame = this.iconList[5];
+        // if (id == 16 || id == 56)spriteFrame = this.iconList[5];
+
+        
         this.goodsIcon.spriteFrame = spriteFrame;
         // 人民币(单位分)
         var money = data[2] / 100;

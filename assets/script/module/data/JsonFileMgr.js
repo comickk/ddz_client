@@ -8,8 +8,9 @@ module.exports = {
         for (var k = 0; k < audioCfg.length; k++) {
             var itemCfg = audioCfg[k];
             var mp3File = itemCfg['mp3'];
-            var url = cc.url.raw("resources/" + mp3File + ".mp3");
-            cc.loader.load(url, this._onLoadProgress, this._onLoadOver);
+           // var url = cc.url.raw("resources/" + mp3File + ".mp3");//老版本
+            var url = "resources/" + mp3File;
+            cc.loader.loadRes(url, this._onLoadProgress, this._onLoadOver);
         }
     },
     // 获取牌面的点数

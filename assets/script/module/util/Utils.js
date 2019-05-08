@@ -11,7 +11,8 @@ module.exports = {
     },
     // 格式化num为
     formatNum(num){
-        num = parseInt(num.toString());
+        //num = parseInt(num.toString());
+        num =num-0;
         var str = "";
         if (num > 100000000) {
             str = this.getNumBySplit(num / 100000000, 2) + '亿'
@@ -38,9 +39,9 @@ module.exports = {
     },
     // 方便查看log
     log(str){
-        console.log("-----------------------------------------------");
-        console.log(str);
-        console.log("-----------------------------------------------");
+        //console.log("-----------------------------------------------");
+        //console.log(str);
+        //console.log("-----------------------------------------------");
     },
     destroyChildren(node){
         if (node) {

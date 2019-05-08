@@ -89,7 +89,7 @@ module.exports = {
                 GameCfg.btnOrderType = 2;
             }
         } else {
-            console.log("[GameLocalStorage] has init");
+            //console.log("[GameLocalStorage] has init");
         }
     },
 

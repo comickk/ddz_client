@@ -1,10 +1,12 @@
 // 配置 Json 文件必须放在resources/json 目录下
 module.exports = {
     _loadJson: function (file, obj) {
-        var url = cc.url.raw("resources/json/" + file + ".json");
+        //var url = cc.url.raw("resources/json/" + file + ".json");//老版本
+        var url = "json/" + file; 
 
         var self = this;
-        cc.loader.load(url, function (curCount, totalCount, itemObj) {
+        //cc.loader.load(url, function (curCount, totalCount, itemObj) {//老版本
+        cc.loader.loadRes(url, function (curCount, totalCount, itemObj) {
             // 进度
             // console.log(itemObj);
         }, function (err, results) {

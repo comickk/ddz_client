@@ -162,7 +162,7 @@ cc.Class({
     },
     _addWebLayer(url){
         if (cc.sys.platform == cc.sys.WIN32) {
-            console.log('win32 平台不支持 webView');
+            //console.log('win32 平台不支持 webView');
             return;
         }
 

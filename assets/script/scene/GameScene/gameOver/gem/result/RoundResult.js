@@ -26,7 +26,7 @@ cc.Class({
             this._isTriggerExtractPokerFlag = true;
             this._setTipLabel();
         } else if (msg == GameLocalMsg.Game.OnWinHide) {// 正在牌局结算挂起了游戏,直接停止倒计时
-            console.log("正在结算界面,挂起了游戏");
+            //console.log("正在结算界面,挂起了游戏");
             this._onTimerOver();
         }
     },
@@ -44,7 +44,7 @@ cc.Class({
         } else if (data['next'] && data['next'] == 2) {// 抽牌
             this._isTriggerExtractPokerFlag = true;
         } else {
-            console.log("[error] 抽牌结算数据出现错误!, 没有next数据,或者next数据不对");
+            //console.log("[error] 抽牌结算数据出现错误!, 没有next数据,或者next数据不对");
             this._isTriggerExtractPokerFlag = false;
         }
 

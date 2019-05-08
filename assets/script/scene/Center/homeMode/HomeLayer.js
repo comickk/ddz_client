@@ -155,7 +155,7 @@ cc.Class({
 	},
 	// 商店
 	onClickShop() {
-		ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, null);
+		ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, {type:1});
 		this._changeItemBg(6);
 	},
 });

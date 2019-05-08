@@ -14,7 +14,7 @@ cc.Class({
 
     },
     onPlayBoomSound(){
-        console.log("PlayBoomSound");
+        //console.log("PlayBoomSound");
         AudioPlayer.playEffect(this.boomSound, false);
     },
     // 1 左边 2 右边 3 中间

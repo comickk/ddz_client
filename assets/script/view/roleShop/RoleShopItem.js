@@ -86,7 +86,7 @@ cc.Class({
                     this.switchBtn.active = true;
                 }
             } else {
-                console.log("角色配置数据有问题");
+                //console.log("角色配置数据有问题");
             }
         }
     },

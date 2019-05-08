@@ -23,7 +23,7 @@ cc.Class({
                 this.itemsNode.addChild(clone);
             }
         } else {
-            console.log("没有找到合适的推荐场次");
+            //console.log("没有找到合适的推荐场次");
         }
     },
 });

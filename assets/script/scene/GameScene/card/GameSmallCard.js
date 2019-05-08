@@ -29,7 +29,7 @@ cc.Class({
         var data = CardMap.getDataByServerID(serverID);
         this.cardData = data;
         if (!data) {
-            console.log("出错的卡牌ID: " + serverID);
+            //console.log("出错的卡牌ID: " + serverID);
         }
         // 设置localIndex,方便自动排序, 明牌的时候是从大到小排序
         this.node.zIndex =100 - data.localID;

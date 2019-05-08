@@ -61,16 +61,16 @@ cc.Class({
     _onUpdateRankDate(){
         var b = GameDataRank.isCanGetRankData();
         if (b) {// 从服务器获取排行数据
-            console.log("[缓存数据失效] 主动请求排行数据中...");
+            //console.log("[缓存数据失效] 主动请求排行数据中...");
             GameDataRank.sendGetRankNetMsg();
         } else {// 使用本地缓存数据
             var data = GameDataRank.getRankData();
             if (data) {
-                console.log("[缓存数据有效] 使用本地缓存排行数据, 显示中...");
+                //console.log("[缓存数据有效] 使用本地缓存排行数据, 显示中...");
                 this._rankData = data;
                 this._showRank(this._rankData.gold);
             } else {
-                console.log("[缓存数据有效] 本地没有缓存排行数据, 主动请求中...");
+                //console.log("[缓存数据有效] 本地没有缓存排行数据, 主动请求中...");
                 GameDataRank.sendGetRankNetMsg();
             }
         }
@@ -102,7 +102,7 @@ cc.Class({
                         animate.getComponent(sp.Skeleton).setAnimation(0, 'center', true);
                         this._spine = animate;
                     } else {
-                        console.log("已经创建过spine动画了");
+                        //console.log("已经创建过spine动画了");
                     }
                 }
             }.bind(this));
@@ -147,7 +147,9 @@ cc.Class({
     },
     // U钻模式
     onClickUStoneMode(){
-        ObserverMgr.dispatchMsg(GameLocalMsg.Center.ChangeMode, Poker.GameMode.UStone);
+        var data = {title: '友情提示', content: '抱歉, 功能尚未开放!'};
+		ObserverMgr.dispatchMsg(GameLocalMsg.Com.OnShowTips, data);
+        //ObserverMgr.dispatchMsg(GameLocalMsg.Center.ChangeMode, Poker.GameMode.UStone);
     },
     // 查看详情
     onClickSeeDesc(){

@@ -156,14 +156,14 @@ cc.Class({
             Utils.destroyChildren(this.uiNode);
             var isShowGame = require('GameReady').isShowGame;
             if (isShowGame) {
-                console.log("已经在指定房间牌局结束,重新开始游戏...");
+                //console.log("已经在指定房间牌局结束,重新开始游戏...");
                 // 删除结算节点
                 GameData.roomData.playState = Poker.GamePlayState.None;
                 ObserverMgr.dispatchMsg(GameNetMsg.recv.ChangeDesk.msg, null);
                 ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnGameOverContinuePlay, null);
                 this._sendBeganGameNetMsg(false);
             } else {
-                console.log("已经在指定房间牌局结束,但是游戏挂起,等待开始游戏...");
+                //console.log("已经在指定房间牌局结束,但是游戏挂起,等待开始游戏...");
                 ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnShowFindPlayer, null);
             }
         }
@@ -664,7 +664,7 @@ cc.Class({
     _onNetResumeEnterRoom(data){
         var curOpUser = data.cu;// 当前操作的用户是谁
         var str = JSON.stringify(data);
-        console.log("GameScene[场景恢复情况]: " + str);
+        //console.log("GameScene[场景恢复情况]: " + str);
     },
     _addSpringEffect(data){
         var node = cc.instantiate(this.springPrefab);
@@ -1191,7 +1191,7 @@ cc.Class({
         } else if (nextUser == GameData.roomData.rightPlayData.deskPos) {
             this.rightPlayer.think(null, GameStaticCfg.time.robLandlord);
         } else if (nextUser == 0) {
-            console.log("叫地主结束");
+            //console.log("叫地主结束");
         }else {
             this.selfPlayer.think();
 
@@ -1220,7 +1220,7 @@ cc.Class({
     },
 
     _onClickCancelRobot(){
-        console.log("cancel robot");
+        //console.log("cancel robot");
     },
     onLoad: function () {
         GameData.curScene = Poker.GameScene.Play;

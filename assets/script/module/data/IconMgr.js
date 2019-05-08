@@ -7,7 +7,7 @@ module.exports = {
         if (roleHeadUrl) {
             ImgMgr.setImg(sprite, roleHeadUrl);
         } else {
-            console.log("找不到玩家头像数据, roleID: " + roleID);
+            //console.log("找不到玩家头像数据, roleID: " + roleID);
         }
     },
     setGameBg(sprite, sceneId){
@@ -16,7 +16,7 @@ module.exports = {
             var pngUrl = sceneData['png'];
             ImgMgr.setImg(sprite, pngUrl);
         } else {
-            console.log("找不到场景配置数据, sceneID: " + sceneId);
+            //console.log("找不到场景配置数据, sceneID: " + sceneId);
         }
     },
     // 获取排行榜排行icon

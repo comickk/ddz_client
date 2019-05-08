@@ -12,7 +12,7 @@ module.exports = {
             if (!err) {
                 sprite.spriteFrame = frame;
             } else {
-                console.log(err);
+                //console.log(err);
             }
         });
     },

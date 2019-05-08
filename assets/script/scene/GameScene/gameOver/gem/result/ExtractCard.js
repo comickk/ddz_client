@@ -37,7 +37,7 @@ cc.Class({
         var data = CardMap.getDataByServerID(serverID);
         this.cardData = data;
         if (!data) {
-            console.log("抽到的牌ID有问题: " + serverID);
+            //console.log("抽到的牌ID有问题: " + serverID);
             return;
         }
         // 设置view

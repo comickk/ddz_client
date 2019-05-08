@@ -38,7 +38,8 @@ cc.Class({
             var strName = this.editBox.string;
             GameLocalStorage.setName(strName);
             //todo 创建完角色去U钻场
-            ObserverMgr.dispatchMsg(GameLocalMsg.Center.ChangeMode, Poker.GameMode.UStone);
+           // ObserverMgr.dispatchMsg(GameLocalMsg.Center.ChangeMode, Poker.GameMode.UStone);
+            ObserverMgr.dispatchMsg(GameLocalMsg.Center.ChangeMode, Poker.GameMode.Home);
             this.close();
         }
     },
@@ -70,8 +71,9 @@ cc.Class({
         if (strName != '' && nameRule.test(strName) == true) {
             var roleData = JsonFileMgr.getRoleDataById(this._roleIndex);
             var roleId = roleData['roleId'];
-            var data = {name: encodeURI(strName), img: roleId};
-            NetSocketMgr.send(GameNetMsg.send.SetNameAndHead, data);
+            // var data = {name: encodeURI(strName), img: roleId};
+           
+            NetSocketMgr.send(GameNetMsg.send.SetNameAndHead, {name: strName, img: roleId});
         } else {
             this.editBox.string = '';
             this.editBox.placeholder = JsonFileMgr.getErrString(4004);

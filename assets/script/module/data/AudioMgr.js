@@ -9,7 +9,7 @@ module.exports = {
     },
     _onLoadOver(err, result){
         if (result) {
-            console.log("over: " + result);
+            //console.log("over: " + result);
         }
     },
     init(){

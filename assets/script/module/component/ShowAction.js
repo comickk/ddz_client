@@ -31,7 +31,7 @@ cc.Class({
                 this.node.runAction(seq);
             }
         } else {
-            console.log("帧率过低:" + fps + ", 不执行action: ");
+            //console.log("帧率过低:" + fps + ", 不执行action: ");
         }
     },   
 });

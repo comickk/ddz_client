@@ -23,9 +23,10 @@ module.exports = {
 
 		//var url = this.getSocketAddress();
 		//var url = "ws://121.40.165.18:8088";// 测试的url
-		var url = 'ws://192.168.0.126:8765'; // 测试的url
+		//var url = 'ws://192.168.0.126:8765'; // 测试的url
+		var url = 'ws://39.105.182.61:8765'; // 
 		this.ws = new WebSocket(url);
-		console.log('[NetSocketMgr] 连接地址:' + url);
+		//console.log('[NetSocketMgr] 连接地址:' + url);
 		//this.ws.binaryType = 'arraybuffer';
 		this.ws.onopen = this.onOpen.bind(this);
 		this.ws.onmessage = this.onMessage.bind(this);
@@ -55,20 +56,20 @@ module.exports = {
 	reConnect() {
 		if (this.ws) {
 			if (this.ws.readyState == WebSocket.OPEN) {
-				console.log('[NetSocket]重连: 网络已经打开,正在认证中...');
+				//console.log('[NetSocket]重连: 网络已经打开,正在认证中...');
 			} else if (this.ws.readyState == WebSocket.CONNECTING) {
-				console.log('[NetSocket]重连: 网络已经建立,正在握手中... state:' + this.ws.readyState);
+				//console.log('[NetSocket]重连: 网络已经建立,正在握手中... state:' + this.ws.readyState);
 			} else {
-				console.log('[NetSocket]重连: 网络已经建立,state:' + this.ws.readyState);
+				//console.log('[NetSocket]重连: 网络已经建立,state:' + this.ws.readyState);
 			}
 		} else {
-			console.log('[NetSocket]重连: socket = null, 重新初始化网络');
+			//console.log('[NetSocket]重连: socket = null, 重新初始化网络');
 			this.init();
 		}
 	},
 	//////////////////////Socket 打开/////////////////////////////////////
 	onOpen: function() {
-		console.log('[Socket Open]');
+		//console.log('[Socket Open]');
 		this.isNetOpen = true;
 		ObserverMgr.dispatchMsg(GameLocalMsg.SOCKET.OPEN, null);
 	},
@@ -91,23 +92,23 @@ module.exports = {
 			}
 		} else {
 			// 网络出现问题
-			console.log('[NetSocketMgr] on heart beat, but no connection net or net is enable');
+			//console.log('[NetSocketMgr] on heart beat, but no connection net or net is enable');
 			this._clearHearBeat();
 		}
 	},
 	// 清除心跳
 	_clearHearBeat() {
 		if (this.heartID != null) {
-			console.log('[NetSocketMgr] clean beat: success to clean id = ' + this.heartID);
+			//console.log('[NetSocketMgr] clean beat: success to clean id = ' + this.heartID);
 			clearInterval(this.heartID);
 			this.heartID = null;
 		} else {
-			console.log('[NetSocketMgr] clean beat: failed, no heart to stop');
+			//console.log('[NetSocketMgr] clean beat: failed, no heart to stop');
 		}
 	},
 	//////////////////////////Socket 错误/////////////////////////////////
 	onError: function() {
-		console.log('[Socket Error]');
+		//console.log('[Socket Error]');
 		this._clearHearBeat();
 		this._cleanCallBack();
 		this.ws = null;
@@ -121,25 +122,23 @@ module.exports = {
 		this.ws = null;
 		this.isNetOpen = false;
 
-		console.log('[NetSocketMgr] Socket Close');
+		//console.log('[NetSocketMgr] Socket Close');
 
-		if (
-			GameData.isForceOutLine == false && // 没有被单点登录下线,真正的网络问题导致的下线
-			GameData.isInitiativeOutLine == false && // 不是主动退出导致的断线
-			GameData.isReConnectServer == false
-		) {
+		if (	GameData.isForceOutLine == false && // 没有被单点登录下线,真正的网络问题导致的下线
+				GameData.isInitiativeOutLine == false && // 不是主动退出导致的断线
+				GameData.isReConnectServer == false	) {
 			// 需要重连
 			ObserverMgr.dispatchMsg(GameLocalMsg.Game.OnTriggerReconnect, null);
 		} else if (GameData.isForceOutLine == true) {
 			// 单点登录强制下线
-			console.log('[NetSocketMgr] onSocket close: user force out line');
+			//console.log('[NetSocketMgr] onSocket close: user force out line');
 			ObserverMgr.dispatchMsg(GameLocalMsg.Game.OnForceOutLine, null);
 		} else if (GameData.isForceOutLine == false && GameData.isInitiativeOutLine == true) {
 			// 主动下线
-			console.log('[NetSocketMgr] onSocket close: user initiative OutLine');
+			//console.log('[NetSocketMgr] onSocket close: user initiative OutLine');
 			ObserverMgr.dispatchMsg(GameLocalMsg.Game.OnInitiativeOutLine, null);
 		} else {
-			console.log('[NetSocketMgr] onSocket close: do nothing');
+			//console.log('[NetSocketMgr] onSocket close: do nothing');
 			ObserverMgr.dispatchMsg(GameLocalMsg.SOCKET.CLOSE, null);
 		}
 	},
@@ -147,7 +146,7 @@ module.exports = {
 		if (this.ws && this.ws.readyState == WebSocket.OPEN) {
 			// 调用sdk的登出
 			if (GameData.visitorAccount) {
-				console.log('[NetSocketMgr] 访客账号无需退出call exit sdk');
+				//console.log('[NetSocketMgr] 访客账号无需退出call exit sdk');
 			} else {
 				NativeSdk.onSdkExit();
 			}
@@ -175,12 +174,12 @@ module.exports = {
 				ObserverMgr.dispatchMsg(GameLocalMsg.SOCKET.SEND, msg['msg']);
 				return true;
 			} else {
-				console.log('网络失去连接...');
+				//console.log('网络失去连接...');
 				this.onClose();
 				return false;
 			}
 		} else {
-			console.log('网络连接出现问题:可能没有初始化网络,或网络失去连接!');
+			//console.log('网络连接出现问题:可能没有初始化网络,或网络失去连接!');
 			this.onClose();
 			return false;
 		}
@@ -189,7 +188,7 @@ module.exports = {
 	_showSendData(id, msg, data) {
 		var sendData = { id: id, msg: msg, data: data };
 		var str = JSON.stringify(sendData);
-		console.log('[Socket 发送数据==>]' + str);
+		//console.log('[Socket 发送数据==>]' + str);
 		return str;
 	},
 
@@ -199,9 +198,9 @@ module.exports = {
 		var sec = time.getSeconds();
 		var min = time.getMinutes();
 		var hour = time.getHours();
-		console.log('[Socket] onMessage time: ' + hour + ':' + min + ':' + sec);
+		//console.log('[Socket] onMessage time: ' + hour + ':' + min + ':' + sec);
 		//var recvData = DataEncrypt.dataDecode(event.data) // 解密
-		console.log('接收 <== '+ event.data);
+		//console.log('接收 <== '+ event.data);
 		var recvData = JSON.parse(event.data);
 		var order = recvData['order'];
 		var msg = GameNetMsg.getReceiveMsgStrByID(order);

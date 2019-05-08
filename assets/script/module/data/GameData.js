@@ -318,7 +318,7 @@ module.exports = {
 				if (isNotifySHowCardMulChange) {
 					ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnTriggerMul, data.mul.vc); // 明牌倍数变化
 				} else {
-					console.log('不显示明牌倍数变化');
+					//console.log('不显示明牌倍数变化');
 				}
 				//var data ={show:isNotifySHowCardMulChange, mul:data.mul.vc};
 				//ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnTriggerMul, data);// 明牌倍数变化
@@ -637,8 +637,14 @@ module.exports = {
 		ObserverMgr.addEventListener(
 			GameNetMsg.recv.PaySuccess.msg,
 			function(msg, data) {
-				this.playData.gold = parseInt(data.up.toString());
-				ObserverMgr.dispatchMsg(GameLocalMsg.Com.UpdateMoney, null);
+				if(data.type ==1){
+					this.playData.gold = parseInt(data.up.toString()); //充豆
+					this.playData.gem = parseInt(data.ud.toString());//充钻
+					ObserverMgr.dispatchMsg(GameLocalMsg.Com.UpdateMoney, null);
+				}else{
+					this.playData.gem = parseInt(data.ud.toString());//充钻
+					ObserverMgr.dispatchMsg(GameLocalMsg.Com.UpdateMoney, null);
+				}				
 			},
 			this
 		);
@@ -1002,7 +1008,7 @@ module.exports = {
 			GameLocalMsg.Play.OnResetTimeOutCount,
 			function(msg, data) {
 				this.roomData.selfPlayData.timeOutCount = 0; // 托管超时次数为0
-				console.log('重置超时次数');
+				//console.log('重置超时次数');
 			},
 			this
 		);
@@ -1155,7 +1161,7 @@ module.exports = {
 				} else if (currentDo == 8) {
 					//一局结束
 					this.roomData.playState = Poker.GamePlayState.GameOver;
-					console.log('一局结束');
+					//console.log('一局结束');
 					this._dealEnterLandlord(data.lo);
 					this._dealLastThreeCard(data);
 				} else if (currentDo == 9) {

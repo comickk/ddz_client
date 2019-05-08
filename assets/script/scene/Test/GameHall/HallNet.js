@@ -56,12 +56,12 @@ module.exports = {
                 this._showSendData(id, msg["msg"], data);
                 return true;
             } else {
-                console.log("网络失去连接...");
+                //console.log("网络失去连接...");
                 this.onClose();
                 return false;
             }
         } else {
-            console.log("网络连接出现问题:可能没有初始化网络,或网络失去连接!");
+            //console.log("网络连接出现问题:可能没有初始化网络,或网络失去连接!");
             this.onClose();
             return false;
         }

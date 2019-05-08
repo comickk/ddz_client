@@ -53,7 +53,7 @@ cc.Class({
     },
     _onUpdateLabel(){
         this._time--;
-        console.log("网络重新连接倒计时: " + this._time);
+       // console.log("网络重新连接倒计时: " + this._time);
         this._setLabel();
         if (this._time <= 0) {
             this.unschedule(this._onUpdateLabel);

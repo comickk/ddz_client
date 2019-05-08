@@ -12,7 +12,7 @@ module.exports = {
         var diffSecond = diff / 1000;
         var diffMin = diff / 1000 / 60;
         var diffHour = diff / 1000 / 60 / 60;
-        console.log("距离上次获取排行数据时间差: " + diffSecond + " 秒");
+        //console.log("距离上次获取排行数据时间差: " + diffSecond + " 秒");
         if (diffSecond > 60 * 5) {
             return true;
         }

@@ -11,6 +11,7 @@ var GameDataUtils = require('GameDataUtils');
 var AudioPlayer = require('AudioPlayer');
 var RouterMgr = require('RouterMgr');
 var IconMgr = require('IconMgr');
+var GameStaticCfg = require('GameStaticCfg');
 
 var centerScene = cc.Class({
 	extends: Observer,
@@ -143,6 +144,7 @@ var centerScene = cc.Class({
 
 		case GameLocalMsg.Center.ShowShop:
 			// 商店
+			GameStaticCfg.shoptype = data.type; //设置要打的商店类型
 			this.onClickShop();
 			break;
 
@@ -251,7 +253,7 @@ var centerScene = cc.Class({
 	},
 	// 匹配到客服
 	_onNetMatchService(data) {
-		console.log('匹配到客服');
+		//console.log('匹配到客服');
 	},
 	// 响应路由
 	_onRouter(data) {
@@ -300,7 +302,7 @@ var centerScene = cc.Class({
 
 			var b = GameDataUtils.setRoomDataByRoomID(data.room);
 			if (!b) {
-				console.log('本地不存在id为' + data.room + '的房间数据...');
+				//console.log('本地不存在id为' + data.room + '的房间数据...');
 			}
 			// 房间不同提示一下
 			if (isSameRoom) {
@@ -400,6 +402,7 @@ var centerScene = cc.Class({
 	},
 	// 商店
 	onClickShop() {
+	
 		Utils.destroyChildren(this.topNode);
 
 		var shop = cc.instantiate(this.pbShop);
@@ -440,7 +443,7 @@ var centerScene = cc.Class({
 	},
 	_initUI() {
 		var sceneIndex = GameData.getUseSceneId();
-		console.log('背景：sceneIndex: ' + sceneIndex);
+		//console.log('背景：sceneIndex: ' + sceneIndex);
 		IconMgr.setGameBg(this.bg, sceneIndex);
 	},
 	// 改变模式
@@ -460,6 +463,7 @@ var centerScene = cc.Class({
 			ObserverMgr.dispatchMsg(GameLocalMsg.Center.EnterSubLayer, true);
 		} else {
 			// 进入其他模式(角色,场景)
+			
 		}
 	},
 	// 邮件
@@ -508,7 +512,7 @@ var centerScene = cc.Class({
 			'友情提示',
 			'您的金豆不足，是否去充值？',
 			function() {
-				ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, null);
+				ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, {type:1});
 			},
 			null,
 			this
@@ -521,7 +525,7 @@ var centerScene = cc.Class({
 			Utils.destroyChildren(this.netNode);
 			Utils.addEnterGameLoading(this.netNode);
 		} else {
-			console.log('has EnterGameLoading Layer');
+			//console.log('has EnterGameLoading Layer');
 		}
 		cc.director.preloadScene(
 			'GameScene',

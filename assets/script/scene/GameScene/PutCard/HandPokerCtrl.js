@@ -190,7 +190,7 @@ cc.Class({
 				var len = this._cardIDArrayFromServer.length;
 				for (var i = 0; i <= len; i++) {
 					this._dealAddCard();
-					console.log('处理剩余牌张数:' + this._cardIDArrayFromServer.length);
+					//console.log('处理剩余牌张数:' + this._cardIDArrayFromServer.length);
 				}
 			}
 		}
@@ -207,7 +207,7 @@ cc.Class({
 				str = '超时2次,笨笨的机器人代打中~';
 			} else {
 				str = '超时,笨笨的机器人帮你代打中~';
-				console.log('超时 error');
+				//console.log('超时 error');
 			}
 			this._setPutCardTipMsg(str);
 		}
@@ -274,7 +274,7 @@ cc.Class({
 					if (b1) {
 						this._sendPutPokerToServer(putCardType, putCardPoint, putCardTypeResult);
 					} else {
-						console.log('牌型符合, 但是没有对方的牌大');
+						//console.log('牌型符合, 但是没有对方的牌大');
 						this._setPutCardTipMsg('您选择的牌不符合规则');
 						GameCardMgr.setAllHandPokerUnSelect(); // 所有的牌降下去
 					}
@@ -286,7 +286,7 @@ cc.Class({
 						this._sendPutPokerToServer(putCardType, putCardPoint, putCardTypeResult);
 					} else {
 						// 牌型不能压制
-						console.log('牌型不符合, 并且没有对方的牌大');
+						//console.log('牌型不符合, 并且没有对方的牌大');
 						this._setPutCardTipMsg('您选择的牌不符合规则');
 						GameCardMgr.setAllHandPokerUnSelect(); // 所有的牌降下去
 					}
@@ -551,8 +551,8 @@ cc.Class({
 			if (difX < 40 && difTime < 500) {
 				if (difY > 80) {
 					// 提牌
-					console.log('time:' + difTime + ', difX:' + difX + ', difY:' + difY);
-					console.log('滑动出牌');
+					//console.log('time:' + difTime + ', difX:' + difX + ', difY:' + difY);
+					//console.log('滑动出牌');
 					this._quickPutCardData.isAction = true;
 					this._onSlidePutCardAction(event);
 				} else if (difY < -60) {
@@ -583,17 +583,17 @@ cc.Class({
 			var isInSelectCardArray = GameCardMgr.isCardInSelectedPutCardArray(beganCard);
 			if (isInSelectCardArray) {
 				// 滑动的是选择的牌
-				console.log('滑动的是选择的牌');
+				//console.log('滑动的是选择的牌');
 				// 出选择的牌
 				this._onSlideFinished();
 			} else {
 				// 滑动的是未选择的牌
-				console.log('滑动的是未选择的牌');
+				//console.log('滑动的是未选择的牌');
 				GameCardMgr.onAddSlideCard(beganCard);
 				this._onSlideFinished();
 			}
 		} else {
-			console.log('没有从牌开始滑动');
+			//console.log('没有从牌开始滑动');
 			this._onSlideFinished();
 		}
 	},
@@ -611,7 +611,7 @@ cc.Class({
 			// 地主先出
 			ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnClickPutCardBegan, null);
 		} else {
-			console.log('时机不对');
+			//console.log('时机不对');
 		}
 	},
 	_onTouchEnd(event) {
@@ -814,7 +814,7 @@ cc.Class({
 	// 处理跟顺子牌
 	_dealFollowContinue(selectCardData, followNum, basePoint) {
 		var resultArray = CardAlgorithm.isCardPointContinue(selectCardData, followNum, basePoint);
-		console.log('需要的点数: ' + JSON.stringify(resultArray));
+		//console.log('需要的点数: ' + JSON.stringify(resultArray));
 
 		if (resultArray.length > 0) {
 			var oneResult = this._getOneResultAllPointInHand(resultArray);
@@ -824,10 +824,10 @@ cc.Class({
 					GameCardMgr.onAddSlideCard(followCard);
 				}
 			} else {
-				console.log('找到的顺子牌,手里都不能凑出来');
+				//console.log('找到的顺子牌,手里都不能凑出来');
 			}
 		} else {
-			console.log('没有可以顺子牌可以跟');
+			//console.log('没有可以顺子牌可以跟');
 		}
 	},
 	// 指定的点数都能从手牌中找到
@@ -872,7 +872,7 @@ cc.Class({
 				var preClickTime = this._quickDoubleClickData[len - 2].getTime();
 				var lastClickTime = this._quickDoubleClickData[len - 1].getTime();
 				var diffTime = lastClickTime - preClickTime;
-				console.log('diff: ' + diffTime);
+				//console.log('diff: ' + diffTime);
 				if (diffTime <= 260) {
 					GameCardMgr.setAllHandPokerUnSelect(); // 所有的牌降下去
 				}
@@ -906,7 +906,7 @@ cc.Class({
 			var len = this._cardIDArrayFromServer.length;
 			for (var i = 0; i <= len; i++) {
 				this._dealAddCard();
-				console.log('处理剩余牌张数:' + this._cardIDArrayFromServer.length);
+				//console.log('处理剩余牌张数:' + this._cardIDArrayFromServer.length);
 			}
 		}
 	},

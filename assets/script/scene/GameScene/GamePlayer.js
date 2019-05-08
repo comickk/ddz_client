@@ -360,7 +360,7 @@ cc.Class({
                     this._updateWarningSoundByRemainCardNum(remainCardNum);
                 }
             } else {
-                console.log("[无法识别出牌类型]: " + putCardArrStr);
+                //console.log("[无法识别出牌类型]: " + putCardArrStr);
             }
             // 牌型动画
             GameSceneUtil.onRolePushCardAni(this._spineAni);

@@ -25,7 +25,7 @@ cc.Class({
         var data = CardMap.getDataByServerID(serverID);
         this.cardData = data;
         if (!data) {
-            console.log("出错的卡牌ID: " + serverID);
+            //console.log("出错的卡牌ID: " + serverID);
         }
         if (data.suit == GamePokerType.PokerSuit.SmallJoker) {// 小王
             this.normalNode.active = false;

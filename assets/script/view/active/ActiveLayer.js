@@ -52,11 +52,35 @@ cc.Class({
                 this._initItem(JSON.parse(text));
             }
         }.bind(this);
+        //-----------------------测试用
+        // this._initItem('');
+        //--------------------
 
         xhr.open("GET", url);
         xhr.send();
     },
     _initItem(data){
+        //-----------------------------测试用----------
+        // var testData ={ activity: [{
+        //     "title": "111111",   //标题
+        //     "img": "",     //图片地址
+        //     "act": "1",     //行为，客户端可自定义事件,也可以为空什么都不做，只作展示用
+        //     "content": "1111111", //文本内容
+        //     "type": 1,     //1 表示是张图片， 2表示是文本,
+        //     "tag": 1,      //活动标签 1 最新  2 最热  3 限时，
+        //     "icon": 1,     //活动标题上的图标 1 礼包图标  2 星星图标
+        // }],notice:[{
+        //     "title": "22222",   //标题
+        //     "img": "",     //图片地址
+        //     "act": "2",     //行为，客户端可自定义事件,也可以为空什么都不做，只作展示用
+        //     "content": "2222222", //文本内容
+        //     "type": 2,     //1 表示是张图片， 2表示是文本,
+        //     "tag": 2,      //活动标签 1 最新  2 最热  3 限时，
+        //     "icon": 2,     //活动标题上的图标 1 礼包图标  2 星星图标
+        // }]};
+        // data = testData;
+
+        //-------
         var activity = data['activity'];
         this._activeScriptArr = [];
         Utils.destroyChildren(this.activeContent);

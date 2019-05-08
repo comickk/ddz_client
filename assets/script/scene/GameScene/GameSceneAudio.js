@@ -55,14 +55,14 @@ cc.Class({
 			AudioPlayer.playMusic(this.normalPlay, true);
 			this._state = GamePlayMusicState.Normal;
 		} else {
-			console.log('music normal is playing');
+			//console.log('music normal is playing');
 		}
 	},
 	// 报牌music,有2中音乐,随机选择一种
 	playWarningMusic() {
 		if (this._state != GamePlayMusicState.Warning) {
 			if (this._state == GamePlayMusicState.GameOver) {
-				console.log('游戏已经结束,但是触发了播放报警声音的动作');
+				//console.log('游戏已经结束,但是触发了播放报警声音的动作');
 			} else {
 				this._state = GamePlayMusicState.Warning;
 
@@ -74,7 +74,7 @@ cc.Class({
 				}
 			}
 		} else {
-			console.log('music warning is playing');
+			//console.log('music warning is playing');
 		}
 	},
 	// 播放游戏结束music
@@ -87,7 +87,7 @@ cc.Class({
 				AudioPlayer.playMusic(this.lose, false);
 			}
 		} else {
-			console.log('music gameOver is playing');
+			//console.log('music gameOver is playing');
 		}
 	},
 	forcePlayGameOverMusic(result) {

@@ -70,7 +70,7 @@ module.exports = {
             if (roomInfo) {
                 this._setGameRoomData(roomInfo);
             } else {
-                console.log("没有找到比赛场房间配置数据,roomID: " + roomID);
+                //console.log("没有找到比赛场房间配置数据,roomID: " + roomID);
             }
         } else if (type == Poker.GameRoomType.Gold) {// 在金豆场
             if (roomID == id) {
@@ -80,7 +80,7 @@ module.exports = {
             if (roomInfo) {
                 this._setGameRoomData(roomInfo);
             } else {
-                console.log("没有找到金豆场房间配置数据,roomID: " + roomID);
+                //console.log("没有找到金豆场房间配置数据,roomID: " + roomID);
             }
         }
     },

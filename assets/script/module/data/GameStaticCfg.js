@@ -9,9 +9,9 @@ module.exports = {
     // sdkUrl: "http://wddz.haoxiaow.com:9901/api.php",
     // activityUrl: "http://cdn.haoxiaow.com/ddz/event/activity.json",
     isLocalVersion: true,// 是否是本地版本
-    certUrl: "http://192.168.0.222:9700/cert",
-    sdkUrl: "http://192.168.0.222:9901/api.php",
-    activityUrl: "http://192.168.0.222:9901/ddz/event/activity.json",
+    certUrl: "http://192.168.0.126:9700/cert",
+    sdkUrl: "http://192.168.0.222:126/api.php",
+    activityUrl: "http://192.168.0.126:9901/ddz/event/activity.json",
 
 
     platform: 1, // 1 页游， 2 pc客户端， 3 android， 4 ios
@@ -22,6 +22,9 @@ module.exports = {
         urlArr: null,
         token: null,
     },
+
+
+    shoptype:1 , // 要打开的商店的类型 ,是豆  还是 钻石
     getGameKey(){
         var key = this.gameServerCertData.key;
         var pemKey = Utils.formatPEMString(key, '\n', 64);
@@ -41,7 +44,7 @@ module.exports = {
         } else {
             channel = "1001";
         }
-        console.log("[GameStaticCfg] channel = " + channel);
+        //console.log("[GameStaticCfg] channel = " + channel);
         return channel;
     },
     // 获取游戏平台
@@ -57,7 +60,7 @@ module.exports = {
             } else if (cc.sys.platform == cc.sys.WIN32) {
                 platform = Poker.GamePlatform.Android;
             } else {
-                console.log("初始化平台: 其他平台");
+                //console.log("初始化平台: 其他平台");
             }
         }
         this.platform = platform;
@@ -83,7 +86,7 @@ module.exports = {
         if (urlArr.length > 0) {
             this.gameServerCertData.urlArr = urlArr;
         } else {
-            console.log("游戏证书返回的url有问题:" + data['url']);
+            //console.log("游戏证书返回的url有问题:" + data['url']);
         }
     },
     sid: 'nil',

@@ -36,7 +36,7 @@ cc.Class({
     },
     _onMsg(msg, data){
         if (msg == GameLocalMsg.Play.OnThinkTimeOverSelf) {
-            console.log("时间到!");
+            //console.log("时间到!");
             this._destroySelf();
         } else if (msg == GameLocalMsg.Play.OnTimeOverRobLand) {
             // 自己抢地主时间到之后默认选择不抢地主

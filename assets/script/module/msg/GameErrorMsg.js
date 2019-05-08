@@ -9,4 +9,6 @@ window.GameErrorMsg = {
     NameToLong: 9010,// 名字太长
     NameNoStandard: 9011,// 名字不符合规范
     BuyRoleNoMoney: 9013,// 购买角色金钱不够
+    PayFailed: 9014,//支付失败
+    LoginError:9015,//登录错误
 };

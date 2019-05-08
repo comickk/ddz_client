@@ -93,10 +93,10 @@ cc.Class({
         if (code == GameErrorMsg.BuyRoleNoMoney) {// 金币不足
             Utils.showOkCancelDlg("提示", "金豆不足, 无法购买, 是否前往充值?",
                 function () {
-                    ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, null);
+                    ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, {type:1});
                 }.bind(this),
                 function () {
-                    console.log("取消了购买场景充值");
+                    //console.log("取消了购买场景充值");
                 }.bind(this));
         }
     },
@@ -109,11 +109,18 @@ cc.Class({
         this._initItem();
     },
 
+    //购买场景
     onClickBuy(){
         if (this._curSelectSceneID) {
-            console.log("购买场景信息: " + this._curSelectSceneID);
+            //console.log("购买场景信息: " + this._curSelectSceneID);
+            //NetSocketMgr.send(GameNetMsg.send.SetGameScene, this._curSelectSceneID);
         }
     },
+    //使用场景
+    onUseBtn(){
+        NetSocketMgr.send(GameNetMsg.send.SetGameScene, this._curSelectSceneID);
+    },
+
     _updateArrow(){
         var max = this.itemScriptArr.length;
         if (this.selectIndex <= 0) {
@@ -156,7 +163,8 @@ cc.Class({
     _initItem(){
         this.itemScriptArr = [];
         Utils.destroyChildren(this.addNode);
-        var data = JsonFileCfg.file.sceneCfg.data;
+        var data = JsonFileCfg.file.sceneCfg.data.json;
+        //console.log(data);
         for (var k = 0; k < data.length; k++) {
             var item = data[k];
             var sceneId = item['sceneId'];

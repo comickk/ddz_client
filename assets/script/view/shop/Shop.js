@@ -39,23 +39,33 @@ cc.Class({
             // 获取到了商品列表信息
             this.initShopItem(data);
         } else if (msg == GameNetMsg.recv.PayShop.msg) {// 返回支付订单号
-            //Utils.destroyChildren(this.tipsNode);
-            var shopNo = data.no;
-            var shopId = data.id;
-            this._curShopNo = shopNo;
-            // ["10","100000","1000","1","0"]
-            // 商品ID + | + 金币 + | + 对应人民币 + | + 是否热卖 + | + 多送百分比
-            GamePay.pay(this._itemShopData, shopNo.toString());
+            // //Utils.destroyChildren(this.tipsNode);
+            // var shopNo = data.no;
+            // var shopId = data.id;
+            // this._curShopNo = shopNo;
+            // // ["10","100000","1000","1","0"]
+            // // 商品ID + | + 金币 + | + 对应人民币 + | + 是否热卖 + | + 多送百分比
+            // GamePay.pay(this._itemShopData, shopNo.toString());
         } else if (msg == GameNetMsg.recv.PaySuccess.msg) {
             //return;
             // todo removePayingMask
             Utils.destroyChildren(this.tipsNode);
-            // 支付成功
-            var gold = data['getup'];
-            //gold = Utils.formatNum(gold);
+
             var msgNode = cc.instantiate(this.pbTipMsg);
             var script = msgNode.getComponent('TipMsg');
-            script.showMsgWithIKnow("提示", "成功充值 " + gold + " 金豆!");
+
+            var getnum=0
+            if (data['type'] == 1){
+                // 支付成功
+                getnum = data['getup'];
+                //gold = Utils.formatNum(gold);               
+                script.showMsgWithIKnow("提示", "成功兑换 " + getnum + " 金豆!");
+            }else{
+                getnum = data['getud'];
+                //gold = Utils.formatNum(gold);               
+                script.showMsgWithIKnow("提示", "成功充值 " + getnum + " 钻!");
+            }
+            
             this.tipsNode.addChild(msgNode);
         } else if (msg == GameLocalMsg.Com.OnIAPSuccess) {
             // 一次只能购买一个商品
@@ -63,7 +73,7 @@ cc.Class({
             if (this._curShopNo != null) {
                 NetSocketMgr.send(GameNetMsg.send.IAPSuccess, {no: this._curShopNo, token: data});
             } else {
-                console.log("内购成功，但是没有发现订单号");
+               //console.log("内购成功，但是没有发现订单号");
             }
         }
     },
@@ -73,11 +83,27 @@ cc.Class({
             NetSocketMgr.send(GameNetMsg.send.GetShopListInfo, {});
         }
     },
+
+    _onError(msg, code, data) {
+		if (code == GameErrorMsg.PayFailed) {
+           //alert("支付失败")
+           Utils.destroyChildren(this.tipsNode);               
+         
+           var msgNode = cc.instantiate(this.ensureBuyDlgPre);
+           var script = msgNode.getComponent('ShopBuyEnsureDlg');
+           script.showBuyDlg("购买失败",null,null,this);
+           this.tipsNode.addChild(msgNode);
+        }
+    },
     onLoad: function () {
         this._initMsg();
         // 发送获取商品列表消息
-        var platform = GameStaticCfg.getGamePlatform();
-        NetSocketMgr.send(GameNetMsg.send.GetShopListInfo, platform);
+        //var platform = GameStaticCfg.getGamePlatform();
+        if (GameStaticCfg.shoptype != 1  && GameStaticCfg.shoptype != 2){
+			GameStaticCfg.shoptype =1;
+		}
+        NetSocketMgr.send(GameNetMsg.send.GetShopListInfo, GameStaticCfg.shoptype);
+       // NetSocketMgr.send(GameNetMsg.send.GetShopListInfo, platform);
         //NetHttpMgr.HttpReq('goodslist',GameNetMsg.recv.GetShopListInfo.msg);
     },
 
@@ -95,7 +121,7 @@ cc.Class({
                 this.itemsNode.addChild(item);
             }
         } else {
-            console.log("获取商品列表有误...");
+            //console.log("获取商品列表有误...");
         }
     },
 
@@ -108,8 +134,13 @@ cc.Class({
 
         var msgNode = cc.instantiate(this.ensureBuyDlgPre);
         var script = msgNode.getComponent('ShopBuyEnsureDlg');
-        script.showBuyDlg(
-            '确定花费 ' + money + ' 元 购买' + gold + '金豆吗?',
+
+        var str =  '确定花费 ' + money + ' 钻 购买' + gold + '金豆吗?'
+
+        if (GameStaticCfg.shoptype ==2)
+            str =  '确定花费 ' + money + ' 元 购买' + gold + '钻吗?'
+            
+        script.showBuyDlg(str,
             this._onPayShopItem,
             null,
             this);
@@ -121,7 +152,7 @@ cc.Class({
     },
     // 购买商品
     _onPayShopItem(){
-        console.log("购买的商品信息:" + JSON.stringify(this._itemShopData));
+        //console.log("购买的商品信息:" + JSON.stringify(this._itemShopData));
         var shopID = this._itemShopData[0];
         var p = GameStaticCfg.getGamePlatform();
         NetSocketMgr.send(GameNetMsg.send.PayShop, {id: shopID, platform: p});

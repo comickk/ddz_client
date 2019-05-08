@@ -40,10 +40,10 @@ cc.Class({
         if (code == GameErrorMsg.BuyRoleNoMoney) {// 金币不足
             Utils.showOkCancelDlg("提示", "金豆不足, 无法购买, 是否前往充值?",
                 function () {
-                    ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, null);
+                    ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, {type:1});
                 }.bind(this),
                 function () {
-                    console.log("取消了购买角色充值");
+                    //console.log("取消了购买角色充值");
                 }.bind(this));
         }
     },

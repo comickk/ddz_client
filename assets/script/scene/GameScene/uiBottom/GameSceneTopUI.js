@@ -89,7 +89,7 @@ cc.Class({
         } else if (type == Poker.PhoneSignalType.Mobile) {
             url = mobileArr[strength.toString()];
         }
-        console.log("网络信号图片:" + url.toString());
+        //console.log("网络信号图片:" + url.toString());
         return url;
     },
     _initSignal(){
@@ -100,10 +100,10 @@ cc.Class({
             if (url) {
                 ImgMgr.setImg(this.signalIcon, url);
             } else {
-                console.log("未获取到网络信号图片URL");
+                //console.log("未获取到网络信号图片URL");
             }
         } else {
-            console.log("未知的网络类型...");
+            //console.log("未知的网络类型...");
         }
     },
     _showRobotBtn(){

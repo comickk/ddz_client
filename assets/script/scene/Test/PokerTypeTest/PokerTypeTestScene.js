@@ -136,7 +136,7 @@ cc.Class({
         for (var k = 0; k < list.length; k++) {
             cardStr += list[k].point + ",";
         }
-        console.log("手牌为: " + cardStr);
+        //console.log("手牌为: " + cardStr);
 
         if (list.length == 0) {
             this.msgLabel.string = "没有选择牌";
@@ -153,7 +153,7 @@ cc.Class({
         if (url) {
             cc.audioEngine.playEffect(url);
         } else {
-            console.log("没找到声音文件" + type);
+            //console.log("没找到声音文件" + type);
         }
     },
     _getPokerTypeChinese(type){

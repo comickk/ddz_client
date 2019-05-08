@@ -18,7 +18,7 @@ module.exports = {
             //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this._onKeyDown, this);
             cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this._onKeyUp, this);
         } else {
-            console.log("[GameReady] has init");
+            //console.log("[GameReady] has init");
         }
     },
     // 声音大小
@@ -36,7 +36,7 @@ module.exports = {
     _onWinShow(){
         if (this.isShowGame == false) {
             this.isShowGame = true;
-            console.log(">>>>>>>>>>>>>>>win show<<<<<<<<<<<<<<<<<");
+            //console.log(">>>>>>>>>>>>>>>win show<<<<<<<<<<<<<<<<<");
             cc.sys.garbageCollect();//强制一次垃圾回收
             cc.audioEngine.resumeAll();
             cc.audioEngine.resumeAllEffects();
@@ -47,7 +47,7 @@ module.exports = {
     _onWinHide(){
         if (this.isShowGame == true) {
             this.isShowGame = false;
-            console.log(">>>>>>>>>>>>>>>win hide<<<<<<<<<<<<<<<<<");
+            //console.log(">>>>>>>>>>>>>>>win hide<<<<<<<<<<<<<<<<<");
             cc.audioEngine.pauseAll();
             cc.audioEngine.pauseAllEffects();
             this._onHideVoice();
@@ -55,10 +55,10 @@ module.exports = {
         }
     },
     _onKeyDown(event){
-        console.log("[Key] 按下: " + event.keyCode.toString());
+        //console.log("[Key] 按下: " + event.keyCode.toString());
     },
     _onKeyUp(event){
-        console.log("[Key] 弹起: " + event.keyCode.toString());
+        //console.log("[Key] 弹起: " + event.keyCode.toString());
         if (event.keyCode == cc.KEY.backspace || event.keyCode == cc.KEY.back) {
             ObserverMgr.dispatchMsg(GameLocalMsg.Game.OnKeyBack, null);
         }

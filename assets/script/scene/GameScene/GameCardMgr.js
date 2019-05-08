@@ -125,7 +125,7 @@ module.exports = {
                     nodeScript.select();
                 }
             } else {
-                console.log("error");
+                //console.log("error");
             }
         }
     },

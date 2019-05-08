@@ -60,6 +60,13 @@ var Login = cc.Class({
 			}.bind(this)
 		);
 	},
+	_onError(msg, code, data) {
+		if (code == GameErrorMsg.LoginError) {
+			
+			this._onLoginFailed('登录失败')
+		} 
+	},
+
 	// 网络真正可用了
 	_onNetOpen() {},
 	_onMsg(msg, data) {
@@ -141,7 +148,7 @@ var Login = cc.Class({
 		this.topNode.addChild(node);
 	},
 	_showTipsLabel(str) {
-		console.log(str);
+		//console.log(str);
 		this.tipsLabel.node.active = true;
 		this.tipsLabel.string = str;
 	},
@@ -154,7 +161,7 @@ var Login = cc.Class({
 		Utils.destroyChildren(this.topNode);
 		if (this._isError) {
 			this.loginBtn.active = true;
-			console.log('进入游戏过程中网络断开...');
+			//console.log('进入游戏过程中网络断开...');
 		} else {
 			cc.director.loadScene('Center');
 		}

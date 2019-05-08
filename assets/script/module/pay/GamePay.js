@@ -114,7 +114,7 @@ module.exports = {
             orderId: orderId,
             money: money,
             callback: function () {
-                console.log("-----------------web订单完成---------------------");
+                //console.log("-----------------web订单完成---------------------");
             },
         };
         SDK.pay(payData);

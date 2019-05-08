@@ -94,10 +94,11 @@ cc.Class({
     },
     // 点豆去商城
     onClickBean(){
-        ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, null);
+        ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, {type:1});
     },
     onClickStone(){
         //刷新钻石
-        NetSocketMgr.send(GameNetMsg.send.GetUserInfo, {});
+        ObserverMgr.dispatchMsg(GameLocalMsg.Center.ShowShop, {type:2});
+        //NetSocketMgr.send(GameNetMsg.send.GetUserInfo, {});
     },
 });

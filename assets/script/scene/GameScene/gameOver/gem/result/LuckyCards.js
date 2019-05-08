@@ -134,7 +134,7 @@ cc.Class({
                 AudioPlayer.playEffect(clip, false);        
             });             
             this.timeOutID = setTimeout(function () {
-                console.log("over");
+                //console.log("over");
                 ObserverMgr.dispatchMsg(GameLocalMsg.Play.OnGameOverShowResultWithExtractPoker, data);
             }, 3000);
         }
@@ -145,7 +145,7 @@ cc.Class({
     },
 
     _onClickCard(data){
-        console.log("选择了第" + data + "张牌...");
+        //console.log("选择了第" + data + "张牌...");
         this._stopExtractSelf();
         this.cardMaskNode.active = true;
         var pos = parseInt(data);
@@ -211,7 +211,7 @@ cc.Class({
             this.cardArr[pos - 1] = null;
             //this.cardArr.splice(pos - 1, 1);
         } else {
-            console.log(pos + '位置的牌已经抽过了');
+            //console.log(pos + '位置的牌已经抽过了');
         }
     },
     _setExtractCardData(user, cardID){

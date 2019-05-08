@@ -26,7 +26,7 @@ cc.Class({
             if (GameData.isRobotByHide) {// 是隐藏界面导致的托管游戏
                 this._onNetCancelRobot();
             } else {// 隐藏界面之前就是托管, 无需取消托管
-                console.log("[action] 隐藏界面之前就是托管, 无需取消托管");
+                //console.log("[action] 隐藏界面之前就是托管, 无需取消托管");
             }
 
         } else if (msg == GameLocalMsg.Play.OnClickCancelRobot) {// 当恢复游戏的时候,默认取消托管状态

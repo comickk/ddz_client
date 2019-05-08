@@ -73,7 +73,7 @@ cc.Class({
     },
     _updateMoney(){
         var playerData = GameData.playData;
-        console.log("更新金币: " + playerData.gold);
+        //console.log("更新金币: " + playerData.gold);
         this.beanLabel.string = Utils.formatNum(playerData.gold);// 金豆
 
         this.uStoneLabel.string = playerData.gem;// U钻
